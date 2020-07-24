@@ -1,2 +1,0 @@
-username:ubuntu
-pw:11111
