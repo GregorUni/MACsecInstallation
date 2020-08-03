@@ -28,4 +28,15 @@ echo -m "install devlink to /usr/share/bash-completion/completions"
 install -m 0644 ipmacsec/devlink /usr/share/bash-completion/completions
 echo -m "install ipmacsec/bpf_elf.h"
 install -m 0644 ipmacsec/bpf_elf.h /usr/include/iproute2
+###########################
+sudo cp MACsec/if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
+
+
+###########################
+#kernel building
+
+sudo apt install git bc bison flex libssl-dev make -y
+
+
+
 
