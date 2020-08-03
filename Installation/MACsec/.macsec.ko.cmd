@@ -1,0 +1,1 @@
+cmd_/home/pi/MACsecInstallation/Installation/MACsec/macsec.ko := ld -r  -EL -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds  --build-id  -o /home/pi/MACsecInstallation/Installation/MACsec/macsec.ko /home/pi/MACsecInstallation/Installation/MACsec/macsec.o /home/pi/MACsecInstallation/Installation/MACsec/macsec.mod.o ;  true

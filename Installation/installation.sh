@@ -1,6 +1,6 @@
-#sudo apt-get update
-#sudo apt-get upgrade -y
-#sudo apt-get install iproute2 -y
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install iproute2 -y
 
 echo -m "install /sbin"
 install -m 0755 -d /sbin
@@ -29,9 +29,10 @@ install -m 0644 ipmacsec/devlink /usr/share/bash-completion/completions
 echo -m "install ipmacsec/bpf_elf.h"
 install -m 0644 ipmacsec/bpf_elf.h /usr/include/iproute2
 ###########################
-sudo cp MACsec/if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
-
-
+cd MACsec/
+sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
+sudo bash conf-macsec.sh
+cd ..
 ###########################
 #kernel building
 
