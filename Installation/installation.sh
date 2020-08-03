@@ -29,6 +29,8 @@ install -m 0644 ipmacsec/devlink /usr/share/bash-completion/completions
 echo -m "install ipmacsec/bpf_elf.h"
 install -m 0644 ipmacsec/bpf_elf.h /usr/include/iproute2
 ###########################
+sudo apt install raspberrypi-kernel-headers
+
 cd MACsec/
 sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
 sudo bash conf-macsec.sh
