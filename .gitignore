@@ -1,0 +1,5 @@
+# ignore all compiled files
+*.o
+*.ko
+*.mod
+*.Rhistory
