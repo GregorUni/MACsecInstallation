@@ -29,17 +29,25 @@ install -m 0644 ipmacsec/devlink /usr/share/bash-completion/completions
 echo -m "install ipmacsec/bpf_elf.h"
 install -m 0644 ipmacsec/bpf_elf.h /usr/include/iproute2
 ###########################
+#install kernel headers
 sudo apt install raspberrypi-kernel-headers
 
-cd MACsec/
-sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
-sudo bash conf-macsec.sh
-cd ..
+if [ $(uname -r) -gt 5.0 ]; then
+	cd MACsec/MACsec5.4
+	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
+	make
+	insmod macsec.ko
+
+else
+
+	cd MACsec/MACsec4.19
+	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
+	make
+	insmod macsec.ko
+fi
+
+cd ../..
 ###########################
-#kernel building
-
-sudo apt install git bc bison flex libssl-dev make -y
-
 
 
 
