@@ -32,7 +32,7 @@ install -m 0644 ipmacsec/bpf_elf.h /usr/include/iproute2
 #install kernel headers
 sudo apt install raspberrypi-kernel-headers
 
-if [ $(uname -r) -gt 5.0 ]; then
+if [ $(uname -r | head -c 5) -gt 5.0 ]; then
 	cd MACsec/MACsec5.4
 	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
 	make
