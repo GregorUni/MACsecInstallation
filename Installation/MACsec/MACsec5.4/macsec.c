@@ -530,9 +530,7 @@ static bool macsec_validate_skb(struct sk_buff *skb, u16 icv_len)
 	    (h->tci_an & MACSEC_TCI_SC))
 		return false;
 
-	/* e) Bits 7 and 8 of octet 4 of the SecTAG are clear */
-	if (h->unused)
-		return false;
+    /* e) Bits 7 and 8 of octet 4 of the SecTAG are clear. Not anymore, its MF + CHF */
 
 	/* rx.pn != 0 (figure 10-5) */
 	if (!h->packet_number)
@@ -3293,7 +3291,6 @@ static const struct net_device_ops macsec_netdev_ops = {
 	.ndo_start_xmit		= macsec_start_xmit,
 	.ndo_get_stats64	= macsec_get_stats64,
 	.ndo_get_iflink		= macsec_get_iflink,
-	.ndo_get_lock_subclass  = macsec_get_nest_level,
 };
 
 static const struct device_type macsec_type = {
@@ -3518,11 +3515,6 @@ static bool sci_exists(struct net_device *dev, sci_t sci)
 	}
 
 	return false;
-}
-
-static sci_t dev_to_sci(struct net_device *dev, __be16 port)
-{
-	return make_sci(dev->dev_addr, port);
 }
 
 static int macsec_add_dev(struct net_device *dev, sci_t sci, u8 icv_len)
