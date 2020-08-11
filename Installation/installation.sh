@@ -1,3 +1,4 @@
+#!/bin/bash
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install iproute2 -y
@@ -31,8 +32,12 @@ install -m 0644 ipmacsec/bpf_elf.h /usr/include/iproute2
 ###########################
 #install kernel headers
 sudo apt install raspberrypi-kernel-headers
-
-if [ $(uname -r | head -c 5) -gt 5.0 ]; then
+bool=$(echo $(uname -r | grep -o -E '[0-9]+.[0-9]+')'>'5.0 | bc -l)
+echo $bool
+#if [ $(uname -r | grep -o -E '[0-9]+.[0-9]+') -lt 5 ]; then
+#if [ $(vercomp $(uname -r | grep -o -E '[0-9]+.[0-9]+') 5.0)]; then
+#if [echo $(uname -r | grep -o -E '[0-9]+.[0-9]+')'<'5.0 | bc -l ]; then
+if [ $bool == 1 ]; then
 	cd MACsec/MACsec5.4
 	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
 	make
@@ -48,6 +53,34 @@ fi
 
 cd ../..
 ###########################
-
-
-
+##helper function to compare linux versions
+vercomp () {
+    if [[ $1 == $2 ]]
+    then
+        return 0
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            return 1
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            return 2
+        fi
+    done
+    return 0
+}
