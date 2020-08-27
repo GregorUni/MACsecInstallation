@@ -1,0 +1,3 @@
+sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
+	make
+	insmod macsec.ko
