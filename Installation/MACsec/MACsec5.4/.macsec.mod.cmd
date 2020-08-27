@@ -1,1 +1,0 @@
-cmd_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod := { echo  /home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o; echo; } > /home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod
