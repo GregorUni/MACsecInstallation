@@ -1562,8 +1562,11 @@ static int init_rx_sa(struct macsec_rx_sa *rx_sa, char *sak, int key_len,
 	if (!rx_sa->stats)
 		return -ENOMEM;
 
+	printk("before 1\n");
 	rx_sa->key[0].tfm = macsec_alloc_tfm(sak, key_len, icv_len,csid);
+printk("before 2\n");
 	rx_sa->key[1].tfm = macsec_alloc_tfm_chacha(sak, key_len, icv_len,csid);
+printk("after both\n");
 	if (IS_ERR(rx_sa->key[0].tfm)) {
 		free_percpu(rx_sa->stats);
 		printk("gcm_error\n");
