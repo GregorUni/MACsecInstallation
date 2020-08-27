@@ -756,7 +756,7 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 		return ERR_PTR(ret);
 	}
 	printk("cipher_number &d\n",cipher_number);
-	req = macsec_alloc_req(tx_sa->key.tfm[cipher_number], &iv, &sg, ret);
+	req = macsec_alloc_req(tx_sa->key->tfm[cipher_number], &iv, &sg, ret);
 	if (!req) {
 		macsec_txsa_put(tx_sa);
 		kfree_skb(skb);
@@ -971,7 +971,7 @@ static struct sk_buff *macsec_decrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-	req = macsec_alloc_req(rx_sa->key.tfm[cipher_number], &iv, &sg, ret);
+	req = macsec_alloc_req(rx_sa->key->tfm[cipher_number], &iv, &sg, ret);
 	if (!req) {
 		kfree_skb(skb);
 		return ERR_PTR(-ENOMEM);
@@ -1564,13 +1564,13 @@ static int init_rx_sa(struct macsec_rx_sa *rx_sa, char *sak, int key_len,
 	if (IS_ERR(rx_sa->key.tfm[0])) {
 		free_percpu(rx_sa->stats);
 		printk("gcm_error\n");
-		return PTR_ERR(rx_sa->key->tfm[0]);
+		return PTR_ERR(rx_sa->key);
 	}
 
 	if (IS_ERR(rx_sa->key.tfm[1])) {
 		free_percpu(rx_sa->stats);
 		printk("chacha_poly error\n");
-		return PTR_ERR(rx_sa->key->tfm[1]);
+		return PTR_ERR(rx_sa->key);
 	}
 	rx_sa->active = false;
 	rx_sa->next_pn = 1;
@@ -1669,12 +1669,12 @@ static int init_tx_sa(struct macsec_tx_sa *tx_sa, char *sak, int key_len,
 	if (IS_ERR(tx_sa->key.tfm[0])) {
 		free_percpu(tx_sa->stats);
 		printk("gcm_error\n");
-		return PTR_ERR(tx_sa->key->tfm[0]);
+		return PTR_ERR(tx_sa->key);
 	}
 	if (IS_ERR(tx_sa->key.tfm[1])) {
 		free_percpu(tx_sa->stats);
 		printk("chacha_poly error\n");
-		return PTR_ERR(tx_sa->key->tfm[1]);
+		return PTR_ERR(tx_sa->key);
 	}
 
 	tx_sa->active = false;
