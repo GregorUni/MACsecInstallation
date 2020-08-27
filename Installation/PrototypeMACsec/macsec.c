@@ -201,7 +201,7 @@ struct macsec_rx_sc {
  * @stats: per-SA stats
  */
 struct macsec_tx_sa {
-	struct macsec_key key;
+	struct macsec_key key[2];
 	spinlock_t lock;
 	u32 next_pn;
 	refcount_t refcnt;
