@@ -362,7 +362,8 @@ static void free_rxsa(struct rcu_head *head)
 {
 	struct macsec_rx_sa *sa = container_of(head, struct macsec_rx_sa, rcu);
 
-	crypto_free_aead(sa->key.tfm);
+	crypto_free_aead(sa->key->tfm[0]);
+	crypto_free_aead(sa->key->tfm[1]);
 	free_percpu(sa->stats);
 	kfree(sa);
 }
@@ -390,7 +391,9 @@ static void free_txsa(struct rcu_head *head)
 {
 	struct macsec_tx_sa *sa = container_of(head, struct macsec_tx_sa, rcu);
 
-	crypto_free_aead(sa->key.tfm);
+	crypto_free_aead(sa->key->tfm[0]);
+	crypto_free_aead(sa->key->tfm[1]);
+	
 	free_percpu(sa->stats);
 	kfree(sa);
 }
