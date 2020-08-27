@@ -391,8 +391,8 @@ static void free_txsa(struct rcu_head *head)
 {
 	struct macsec_tx_sa *sa = container_of(head, struct macsec_tx_sa, rcu);
 
-	crypto_free_aead(&sa->key[0].tfm);
-	crypto_free_aead(&sa->key[1].tfm);
+	crypto_free_aead(sa->key[0].tfm);
+	crypto_free_aead(sa->key[1].tfm);
 	
 	free_percpu(sa->stats);
 	kfree(sa);
@@ -758,8 +758,8 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-	printk("cipher_number &d\n",cipher_number);
-	req = macsec_alloc_req(tx_sa->key->tfm[cipher_number], &iv, &sg, ret);
+	printk("cipher_number %d\n",cipher_number);
+	req = macsec_alloc_req(tx_sa->key[cipher_number].tfm, &iv, &sg, ret);
 	if (!req) {
 		macsec_txsa_put(tx_sa);
 		kfree_skb(skb);
@@ -974,7 +974,7 @@ static struct sk_buff *macsec_decrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-	req = macsec_alloc_req(rx_sa->key->tfm[cipher_number], &iv, &sg, ret);
+	req = macsec_alloc_req(rx_sa->key[cipher_number].tfm, &iv, &sg, ret);
 	if (!req) {
 		kfree_skb(skb);
 		return ERR_PTR(-ENOMEM);
@@ -1562,18 +1562,18 @@ static int init_rx_sa(struct macsec_rx_sa *rx_sa, char *sak, int key_len,
 	if (!rx_sa->stats)
 		return -ENOMEM;
 
-	rx_sa->key->tfm[0] = macsec_alloc_tfm(sak, key_len, icv_len,csid);
-	rx_sa->key->tfm[1] = macsec_alloc_tfm_chacha(sak, key_len, icv_len,csid);
-	if (IS_ERR(rx_sa->key.tfm[0])) {
+	rx_sa->key[0].tfm = macsec_alloc_tfm(sak, key_len, icv_len,csid);
+	rx_sa->key[1].tfm = macsec_alloc_tfm_chacha(sak, key_len, icv_len,csid);
+	if (IS_ERR(rx_sa->key[0].tfm)) {
 		free_percpu(rx_sa->stats);
 		printk("gcm_error\n");
-		return PTR_ERR(rx_sa->key);
+		return PTR_ERR(rx_sa->key[0].tfm);
 	}
 
-	if (IS_ERR(rx_sa->key.tfm[1])) {
+	if (IS_ERR(rx_sa->key[1].tfm)) {
 		free_percpu(rx_sa->stats);
 		printk("chacha_poly error\n");
-		return PTR_ERR(rx_sa->key);
+		return PTR_ERR(rx_sa->key[1].tfm);
 	}
 	rx_sa->active = false;
 	rx_sa->next_pn = 1;
@@ -1667,17 +1667,17 @@ static int init_tx_sa(struct macsec_tx_sa *tx_sa, char *sak, int key_len,
 	if (!tx_sa->stats)
 		return -ENOMEM;
 
-	tx_sa->key->tfm[0] = macsec_alloc_tfm(sak, key_len, icv_len,csid);
-	tx_sa->key->tfm[1] = macsec_alloc_tfm_chacha(sak, key_len, icv_len,csid);
-	if (IS_ERR(tx_sa->key.tfm[0])) {
+	tx_sa->key[0].tfm = macsec_alloc_tfm(sak, key_len, icv_len,csid);
+	tx_sa->key[1].tfm = macsec_alloc_tfm_chacha(sak, key_len, icv_len,csid);
+	if (IS_ERR(tx_sa->key[0].tfm)) {
 		free_percpu(tx_sa->stats);
 		printk("gcm_error\n");
-		return PTR_ERR(tx_sa->key);
+		return PTR_ERR(tx_sa->key[0].tfm);
 	}
-	if (IS_ERR(tx_sa->key.tfm[1])) {
+	if (IS_ERR(tx_sa->key[1].tfm)) {
 		free_percpu(tx_sa->stats);
 		printk("chacha_poly error\n");
-		return PTR_ERR(tx_sa->key);
+		return PTR_ERR(tx_sa->key[1].tfm);
 	}
 
 	tx_sa->active = false;
@@ -1959,7 +1959,8 @@ static int macsec_add_rxsa(struct sk_buff *skb, struct genl_info *info)
 	if (tb_sa[MACSEC_SA_ATTR_ACTIVE])
 		rx_sa->active = !!nla_get_u8(tb_sa[MACSEC_SA_ATTR_ACTIVE]);
 
-	nla_memcpy(rx_sa->key.id, tb_sa[MACSEC_SA_ATTR_KEYID], MACSEC_KEYID_LEN);
+	nla_memcpy(rx_sa->key[0].id, tb_sa[MACSEC_SA_ATTR_KEYID], MACSEC_KEYID_LEN);
+	nla_memcpy(rx_sa->key[1].id, tb_sa[MACSEC_SA_ATTR_KEYID], MACSEC_KEYID_LEN);
 	rx_sa->sc = rx_sc;
 	rcu_assign_pointer(rx_sc->sa[assoc_num], rx_sa);
 
@@ -2105,7 +2106,9 @@ static int macsec_add_txsa(struct sk_buff *skb, struct genl_info *info)
 		return err;
 	}
 
-	nla_memcpy(tx_sa->key.id, tb_sa[MACSEC_SA_ATTR_KEYID], MACSEC_KEYID_LEN);
+	nla_memcpy(tx_sa->key[0].id, tb_sa[MACSEC_SA_ATTR_KEYID], MACSEC_KEYID_LEN);
+	nla_memcpy(tx_sa->key[1].id, tb_sa[MACSEC_SA_ATTR_KEYID], MACSEC_KEYID_LEN);
+
 
 	spin_lock_bh(&tx_sa->lock);
 	tx_sa->next_pn = nla_get_u32(tb_sa[MACSEC_SA_ATTR_PN]);
@@ -2712,7 +2715,8 @@ dump_secy(struct macsec_secy *secy, struct net_device *dev,
 
 		if (nla_put_u8(skb, MACSEC_SA_ATTR_AN, i) ||
 		    nla_put_u32(skb, MACSEC_SA_ATTR_PN, tx_sa->next_pn) ||
-		    nla_put(skb, MACSEC_SA_ATTR_KEYID, MACSEC_KEYID_LEN, tx_sa->key.id) ||
+		    nla_put(skb, MACSEC_SA_ATTR_KEYID, MACSEC_KEYID_LEN, tx_sa->key[0].id) ||
+		    nla_put(skb, MACSEC_SA_ATTR_KEYID, MACSEC_KEYID_LEN, tx_sa->key[1].id) ||
 		    nla_put_u8(skb, MACSEC_SA_ATTR_ACTIVE, tx_sa->active)) {
 			nla_nest_cancel(skb, txsa_nest);
 			nla_nest_cancel(skb, txsa_list);
@@ -2816,7 +2820,8 @@ dump_secy(struct macsec_secy *secy, struct net_device *dev,
 
 			if (nla_put_u8(skb, MACSEC_SA_ATTR_AN, i) ||
 			    nla_put_u32(skb, MACSEC_SA_ATTR_PN, rx_sa->next_pn) ||
-			    nla_put(skb, MACSEC_SA_ATTR_KEYID, MACSEC_KEYID_LEN, rx_sa->key.id) ||
+			    nla_put(skb, MACSEC_SA_ATTR_KEYID, MACSEC_KEYID_LEN, rx_sa->key[0].id) ||
+			    nla_put(skb, MACSEC_SA_ATTR_KEYID, MACSEC_KEYID_LEN, rx_sa->key[1].id) ||
 			    nla_put_u8(skb, MACSEC_SA_ATTR_ACTIVE, rx_sa->active)) {
 				nla_nest_cancel(skb, rxsa_nest);
 				nla_nest_cancel(skb, rxsc_nest);

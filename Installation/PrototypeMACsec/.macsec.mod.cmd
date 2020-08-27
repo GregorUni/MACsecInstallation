@@ -1,0 +1,1 @@
+cmd_/home/pi/MACsecInstallation/Installation/PrototypeMACsec/macsec.mod := { echo  /home/pi/MACsecInstallation/Installation/PrototypeMACsec/macsec.o; echo; } > /home/pi/MACsecInstallation/Installation/PrototypeMACsec/macsec.mod
