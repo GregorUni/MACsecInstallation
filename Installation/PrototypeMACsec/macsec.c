@@ -758,7 +758,7 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-	printk("cipher_number %d\n",cipher_number);
+	//printk("cipher_number %d\n",cipher_number);
 	req = macsec_alloc_req(tx_sa->key[cipher_number].tfm, &iv, &sg, ret);
 	if (!req) {
 		macsec_txsa_put(tx_sa);

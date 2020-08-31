@@ -1160,6 +1160,7 @@ static void macsec_print_opt(struct link_util *lu, FILE *f, struct rtattr *tb[])
 	}
 
 	print_flag(tb, "encrypt", IFLA_MACSEC_ENCRYPT);
+	print_flag(tb, "cipherbit", IFLA_MACSEC_CIPHERBIT);
 	print_flag(tb, inc_sci, IFLA_MACSEC_INC_SCI);
 	print_flag(tb, es, IFLA_MACSEC_ES);
 	print_flag(tb, "scb", IFLA_MACSEC_SCB);
@@ -1189,6 +1190,7 @@ static void usage(FILE *f)
 		"                  [ cipher { default | gcm-aes-128 | chacha-poly-256 | aegis128l-128 | morus640-128} ]\n"
 		"                  [ icvlen { 8..16 } ]\n"
 		"                  [ encrypt { on | off } ]\n"
+		"                  [ cipherbit { on | off } ]\n"
 		"                  [ send_sci { on | off } ]\n"
 		"                  [ end_station { on | off } ]\n"
 		"                  [ scb { on | off } ]\n"
@@ -1265,6 +1267,15 @@ static int macsec_parse_opt(struct link_util *lu, int argc, char **argv,
 			if (ret != 0)
 				return ret;
 			addattr8(n, MACSEC_BUFLEN, IFLA_MACSEC_ENCRYPT, i);
+		  else if (strcmp(*argv, "cipherbit") == 0) {
+			NEXT_ARG();
+			int i;
+
+			ret = one_of("cipherbit", *argv, values_on_off,
+				     ARRAY_SIZE(values_on_off), &i);
+			if (ret != 0)
+				return ret;
+			addattr8(n, MACSEC_BUFLEN, IFLA_MACSEC_CIPHERBIT, i);
 		} else if (strcmp(*argv, "send_sci") == 0) {
 			NEXT_ARG();
 			int i;
