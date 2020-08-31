@@ -1,3 +1,5 @@
-sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
-	make
-	insmod macsec.ko
+	sudo modprobe -r macsec
+	sudo make -C /lib/modules/$(uname -r)/build M=$(pwd) modules
+	sudo depmod -A
+	make -C /lib/modules/$(uname -r)/build M=$(pwd) modules_install	
+	sudo insmod macsec.ko

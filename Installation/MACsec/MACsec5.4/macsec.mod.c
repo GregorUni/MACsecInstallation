@@ -53,12 +53,6 @@ __used __section(__versions) = {
 	{ 0xc9f31519, "consume_skb" },
 	{ 0x39dd700f, "skb_copy" },
 	{ 0x2d6fcc06, "__kmalloc" },
-	{ 0x50c89f23, "__alloc_percpu" },
-	{ 0x9e1225f2, "crypto_aead_setauthsize" },
-	{ 0x1dabb2b4, "crypto_aead_setkey" },
-	{ 0x66ce8d14, "crypto_alloc_aead" },
-	{ 0x8f3625fe, "_raw_spin_unlock_bh" },
-	{ 0x2b5ab97d, "_raw_spin_lock_bh" },
 	{ 0x9fdecc31, "unregister_netdevice_many" },
 	{ 0x2d361ddb, "dev_set_mtu" },
 	{ 0xbde1722a, "gro_cells_init" },
@@ -100,8 +94,14 @@ __used __section(__versions) = {
 	{ 0x1e96f43d, "__cpu_possible_mask" },
 	{ 0x17de3d5, "nr_cpu_ids" },
 	{ 0xcef4d5b4, "__alloc_percpu_gfp" },
+	{ 0x8f3625fe, "_raw_spin_unlock_bh" },
+	{ 0x2b5ab97d, "_raw_spin_lock_bh" },
+	{ 0x50c89f23, "__alloc_percpu" },
 	{ 0xd256e620, "kmem_cache_alloc_trace" },
 	{ 0xa307fb1a, "kmalloc_caches" },
+	{ 0x9e1225f2, "crypto_aead_setauthsize" },
+	{ 0x1dabb2b4, "crypto_aead_setkey" },
+	{ 0x66ce8d14, "crypto_alloc_aead" },
 	{ 0xab72e3b8, "crypto_destroy_tfm" },
 	{ 0x37a0cba, "kfree" },
 	{ 0xc9ec4e21, "free_percpu" },
@@ -122,4 +122,4 @@ __used __section(__versions) = {
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "931A558E4CEA3D9C8F97843");
+MODULE_INFO(srcversion, "21F2E5BA0B8AF000518EC38");

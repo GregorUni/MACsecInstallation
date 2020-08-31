@@ -1267,7 +1267,7 @@ static int macsec_parse_opt(struct link_util *lu, int argc, char **argv,
 			if (ret != 0)
 				return ret;
 			addattr8(n, MACSEC_BUFLEN, IFLA_MACSEC_ENCRYPT, i);
-		  else if (strcmp(*argv, "cipherbit") == 0) {
+		}  else if (strcmp(*argv, "cipherbit") == 0) {
 			NEXT_ARG();
 			int i;
 

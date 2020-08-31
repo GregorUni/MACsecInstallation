@@ -1,7 +1,7 @@
 #!/bin/bash
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install iproute2 -y
+#sudo apt-get update
+#sudo apt-get upgrade -y
+#sudo apt-get install iproute2 -y
 
 echo -m "install /sbin"
 install -m 0755 -d /sbin
@@ -29,9 +29,12 @@ echo -m "install devlink to /usr/share/bash-completion/completions"
 install -m 0644 ipmacsec/devlink /usr/share/bash-completion/completions
 echo -m "install ipmacsec/bpf_elf.h"
 install -m 0644 ipmacsec/bpf_elf.h /usr/include/iproute2
+sudo cp if_link.h /lib/modules/$(uname -r)/build/include/uapi/linux
+sudo cp if_link.h /usr/include/linux
+
 ###########################
 #install kernel headers
-sudo apt install raspberrypi-kernel-headers
+#sudo apt install raspberrypi-kernel-headers
 bool=$(echo $(uname -r | grep -o -E '[0-9]+.[0-9]+')'>'5.0 | bc -l)
 echo $bool
 #if [ $(uname -r | grep -o -E '[0-9]+.[0-9]+') -lt 5 ]; then
@@ -41,14 +44,15 @@ if [ $bool == 1 ]; then
 	cd MACsec/MACsec5.4
 	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
 	make
-	insmod macsec.ko
-
+	depmod -A
+	#insmod /lib/modules/$(uname -r)/kernel/drivers/net/macsec.ko
+	sudo modprobe macsec
 else
 
 	cd MACsec/MACsec4.19
 	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
 	make
-	insmod macsec.ko
+	insmod /lib/modules/$(uname -r)/kernel/drivers/net/macsec.ko
 fi
 
 cd ../..
