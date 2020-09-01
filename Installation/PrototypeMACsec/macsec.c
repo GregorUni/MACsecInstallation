@@ -688,7 +688,6 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 	struct macsec_dev *macsec = macsec_priv(dev);
 	bool sci_present;
 	u32 pn;
-	int cipher_number = 0;
 
 	secy = &macsec->secy;
 	tx_sc = &secy->tx_sc;
@@ -759,8 +758,8 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-	//printk("cipher_number %d\n",cipher_number);
-	req = macsec_alloc_req(tx_sa->key[cipher_number].tfm, &iv, &sg, ret);
+	printk("cipherbit in encrypt %d \n",tx_sc->cipherbit);
+	req = macsec_alloc_req(tx_sa->key[tx_sc->cipherbit].tfm, &iv, &sg, ret);
 	if (!req) {
 		macsec_txsa_put(tx_sa);
 		kfree_skb(skb);
@@ -3406,7 +3405,7 @@ static int macsec_changelink_common(struct net_device *dev,
 	if (data[IFLA_MACSEC_CIPHERBIT])
 	{	
 		tx_sc->cipherbit = !!nla_get_u8(data[IFLA_MACSEC_CIPHERBIT]);
-		printk("tx_sc->cipherbit%d",tx_sc->cipherbit);
+		printk("tx_sc->cipherbit%d\n",tx_sc->cipherbit);
 	}
 	if (data[IFLA_MACSEC_PROTECT])
 		secy->protect_frames = !!nla_get_u8(data[IFLA_MACSEC_PROTECT]);
