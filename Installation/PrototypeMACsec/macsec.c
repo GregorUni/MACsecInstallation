@@ -233,6 +233,7 @@ struct macsec_tx_sc {
 	bool send_sci;
 	bool end_station;
 	bool scb;
+	bool cipherbit;
 	struct macsec_tx_sa __rcu *sa[MACSEC_NUM_AN];
 	struct pcpu_tx_sc_stats __percpu *stats;
 };
@@ -3402,6 +3403,11 @@ static int macsec_changelink_common(struct net_device *dev,
 	if (data[IFLA_MACSEC_ENCRYPT])
 		tx_sc->encrypt = !!nla_get_u8(data[IFLA_MACSEC_ENCRYPT]);
 
+	if (data[IFLA_MACSEC_CIPHERBIT])
+	{	
+		tx_sc->cipherbit = !!nla_get_u8(data[IFLA_MACSEC_CIPHERBIT]);
+		printk("tx_sc->cipherbit%B",tx_sc->cipherbit);
+	}
 	if (data[IFLA_MACSEC_PROTECT])
 		secy->protect_frames = !!nla_get_u8(data[IFLA_MACSEC_PROTECT]);
 
