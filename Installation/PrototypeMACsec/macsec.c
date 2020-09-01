@@ -36,9 +36,9 @@ struct macsec_eth_header {
 #if defined(__LITTLE_ENDIAN_BITFIELD)
     u8  short_length:6,
 		more_fragments:1,
-		extended:1;
+		cipherbit:1;
 #elif defined(__BIG_ENDIAN_BITFIELD)
-    u8  extended:1,
+    u8  cipherbit:1,
         more_fragments:1,
 	    short_length:6;
 #else
@@ -57,6 +57,7 @@ struct macsec_eth_header {
 #define MACSEC_AN_MASK     0x03 /* association number */
 #define MACSEC_TCI_CONFID  (MACSEC_TCI_E | MACSEC_TCI_C)
 
+#define MACSEC_SECTAG_CB_MASK	0x1 /*cipherbit*/
 #define MACSEC_SECTAG_MF_MASK   0x1 /* more fragments */
 #define MACSEC_SECTAG_SLHF_MASK   0x1 /* segment header follows */
 
@@ -325,6 +326,7 @@ struct macsec_cb {
     bool valid;
     bool has_sci;
     bool more_fragments;
+    bool cipherbit;
 };
 
 static struct macsec_rx_sa *macsec_rxsa_get(struct macsec_rx_sa __rcu *ptr)
@@ -501,7 +503,7 @@ static void macsec_fill_sectag(struct macsec_eth_header *h,
 	h->tci_an |= tx_sc->encoding_sa;
 }
 
-static void macsec_set_shortlen(struct macsec_eth_header *h, size_t data_len, bool fragmented)
+static void macsec_set_shortlen(struct macsec_eth_header *h, size_t data_len, bool fragmented, bool cipherbit)
 {
     if (data_len < MIN_NON_SHORT_LEN)
         h->short_length = data_len;
@@ -509,6 +511,8 @@ static void macsec_set_shortlen(struct macsec_eth_header *h, size_t data_len, bo
     if (fragmented) {
         h->more_fragments |= MACSEC_SECTAG_MF_MASK;
     }
+    //setting cipherbit for header
+    h->cipherbit |= MACSEC_SECTAG_CB_MASK;
 
 }
 
@@ -736,7 +740,7 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
     }
 
     macsec_fill_sectag(hh, secy, pn, sci_present);
-    macsec_set_shortlen(hh, unprotected_len - 2 * ETH_ALEN, macsec_skb_cb(skb)->more_fragments);
+    macsec_set_shortlen(hh, unprotected_len - 2 * ETH_ALEN, macsec_skb_cb(skb)->more_fragments,tx_sc->cipherbit);
 
 	skb_put(skb, secy->icv_len);
 
@@ -953,7 +957,7 @@ static struct sk_buff *macsec_decrypt(struct sk_buff *skb,
 				      struct net_device *dev,
 				      struct macsec_rx_sa *rx_sa,
 				      sci_t sci,
-				      struct macsec_secy *secy)
+				      struct macsec_secy *secy,bool cipherbit)
 {
 	int ret;
 	struct scatterlist *sg;
@@ -962,7 +966,6 @@ static struct sk_buff *macsec_decrypt(struct sk_buff *skb,
 	struct aead_request *req;
 	struct macsec_eth_header *hdr;
 	u16 icv_len = secy->icv_len;
-	int cipher_number = 0;
 
 	macsec_skb_cb(skb)->valid = false;
 	skb = skb_share_check(skb, GFP_ATOMIC);
@@ -974,7 +977,7 @@ static struct sk_buff *macsec_decrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-	req = macsec_alloc_req(rx_sa->key[cipher_number].tfm, &iv, &sg, ret);
+	req = macsec_alloc_req(rx_sa->key[cipherbit].tfm, &iv, &sg, ret);
 	if (!req) {
 		kfree_skb(skb);
 		return ERR_PTR(-ENOMEM);
@@ -1244,7 +1247,7 @@ static rx_handler_result_t macsec_handle_frame(struct sk_buff **pskb)
 	/* Disabled && !changed text => skip validation */
 	if (hdr->tci_an & MACSEC_TCI_C ||
 	    secy->validate_frames != MACSEC_VALIDATE_DISABLED)
-		skb = macsec_decrypt(skb, dev, rx_sa, sci, secy);
+		skb = macsec_decrypt(skb, dev, rx_sa, sci, secy,hdr->cipherbit);
 
 	if (IS_ERR(skb)) {
 		/* the decrypt callback needs the reference */
