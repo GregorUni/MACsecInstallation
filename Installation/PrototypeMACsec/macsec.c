@@ -3406,7 +3406,7 @@ static int macsec_changelink_common(struct net_device *dev,
 	if (data[IFLA_MACSEC_CIPHERBIT])
 	{	
 		tx_sc->cipherbit = !!nla_get_u8(data[IFLA_MACSEC_CIPHERBIT]);
-		printk("tx_sc->cipherbit%B",tx_sc->cipherbit);
+		printk("tx_sc->cipherbit%d",tx_sc->cipherbit);
 	}
 	if (data[IFLA_MACSEC_PROTECT])
 		secy->protect_frames = !!nla_get_u8(data[IFLA_MACSEC_PROTECT]);

@@ -2,4 +2,6 @@
 	sudo make -C /lib/modules/$(uname -r)/build M=$(pwd) modules
 	sudo depmod -A
 	make -C /lib/modules/$(uname -r)/build M=$(pwd) modules_install	
-	sudo insmod macsec.ko
+#	sudo insmod macsec.ko
+	sudo cp macsec.ko /lib/modules/5.4.51-v7l+/kernel/drivers/net/
+	sudo modprobe -v macsec
