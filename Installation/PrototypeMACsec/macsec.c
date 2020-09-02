@@ -739,6 +739,7 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
         return ERR_PTR(-ENOLINK);
     }
 
+    printk("macsec_encrypt cipherbit %d\n",tx_sc->cipherbit);
     macsec_fill_sectag(hh, secy, pn, sci_present);
     macsec_set_shortlen(hh, unprotected_len - 2 * ETH_ALEN, macsec_skb_cb(skb)->more_fragments,tx_sc->cipherbit);
 
@@ -977,6 +978,7 @@ static struct sk_buff *macsec_decrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
+	printk("decrypt cipherbit %d \n",cipherbit);
 	req = macsec_alloc_req(rx_sa->key[cipherbit].tfm, &iv, &sg, ret);
 	if (!req) {
 		kfree_skb(skb);
