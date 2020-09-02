@@ -800,6 +800,7 @@ printk("error 2\n");
 
 	dev_hold(skb->dev);
 	ret = crypto_aead_encrypt(req);
+sudo printk("ret %d\n",ret);
 	if (ret == -EINPROGRESS) {
 printk("error 3\n");
 		return ERR_PTR(ret);
