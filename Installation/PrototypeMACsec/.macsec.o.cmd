@@ -825,6 +825,7 @@ deps_/home/pi/MACsecInstallation/Installation/PrototypeMACsec/macsec.o := \
   include/uapi/linux/random.h \
   include/linux/irqnr.h \
   include/uapi/linux/irqnr.h \
+  include/linux/prandom.h \
   include/uapi/linux/net.h \
   include/linux/textsearch.h \
   include/net/checksum.h \

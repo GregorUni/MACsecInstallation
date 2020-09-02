@@ -326,7 +326,7 @@ struct macsec_cb {
     bool valid;
     bool has_sci;
     bool more_fragments;
-    bool cipherbit;
+    //bool cipherbit;
 };
 
 static struct macsec_rx_sa *macsec_rxsa_get(struct macsec_rx_sa __rcu *ptr)
@@ -512,8 +512,11 @@ static void macsec_set_shortlen(struct macsec_eth_header *h, size_t data_len, bo
         h->more_fragments |= MACSEC_SECTAG_MF_MASK;
     }
     //setting cipherbit for header
+	printk("cipherbit in shortlen %d\n",cipherbit);
+    if(cipherbit){
     h->cipherbit |= MACSEC_SECTAG_CB_MASK;
-
+    printk("h->cipherbit %d\n",h->cipherbit);
+	}
 }
 
 /* validate MACsec packet according to IEEE 802.1AE-2006 9.12 */
@@ -654,7 +657,7 @@ static struct aead_request *macsec_alloc_req(struct crypto_aead *tfm,
 	size_t size, iv_offset, sg_offset;
 	struct aead_request *req;
 	void *tmp;
-
+	printk("alloc_req_tfm %d\n",crypto_aead_reqsize(tfm));
 	size = sizeof(struct aead_request) + crypto_aead_reqsize(tfm);
 	iv_offset = size;
 	size += crypto_aead_ivsize(tfm);
@@ -763,6 +766,7 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
+	printk("ret in encrypt %d \n",ret);
 	printk("cipherbit in encrypt %d \n",tx_sc->cipherbit);
 	req = macsec_alloc_req(tx_sa->key[tx_sc->cipherbit].tfm, &iv, &sg, ret);
 	if (!req) {
@@ -800,7 +804,7 @@ printk("error 2\n");
 
 	dev_hold(skb->dev);
 	ret = crypto_aead_encrypt(req);
-sudo printk("ret %d\n",ret);
+printk("ret %d\n",ret);
 	if (ret == -EINPROGRESS) {
 printk("error 3\n");
 		return ERR_PTR(ret);
@@ -1523,17 +1527,22 @@ static struct crypto_aead *macsec_alloc_tfm(char *key, int key_len, int icv_len,
 						break;
 					default:
 						printk("ich war hier gcm2\n");
-						tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
+						tfm = crypto_alloc_aead("gcm(aes)", 0, CRYPTO_ALG_ASYNC);
 						break;
 		}
 
 	if (IS_ERR(tfm))
 		return tfm;
 
+	ret = crypto_aead_setkey(tfm, key, key_len);
+	if (ret < 0)
+		goto fail;
+
 	ret = crypto_aead_setauthsize(tfm, icv_len);
 	if (ret < 0)
 		goto fail;
 
+	printk("ret in tfm %d\n", ret);
 	return tfm;
 fail:
 	crypto_free_aead(tfm);

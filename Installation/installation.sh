@@ -35,11 +35,11 @@ sudo cp if_link.h /usr/include/linux
 ###########################
 #install kernel headers
 #sudo apt install raspberrypi-kernel-headers
-#bool=$(echo $(uname -r | grep -o -E '[0-9]+.[0-9]+')'>'5.0 | bc -l)
-#echo $bool
-#if [[ $bool == 1 ]]; then
-#	cd MACsec/MACsec5.4
-#	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
+bool=$(echo $(uname -r | grep -o -E '[0-9]+.[0-9]+')'>'5.0 | bc -l)
+echo $bool
+if [[ $bool == 1 ]]; then
+	cd MACsec/MACsec5.4
+	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
 #	make
 #	depmod -A
 #	#insmod /lib/modules/$(uname -r)/kernel/drivers/net/macsec.ko
@@ -50,7 +50,7 @@ sudo cp if_link.h /usr/include/linux
 #	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
 #	make
 #	insmod /lib/modules/$(uname -r)/kernel/drivers/net/macsec.ko
-#fi
+fi
 
 #cd ../..
 ###########################
