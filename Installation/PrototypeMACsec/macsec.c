@@ -766,6 +766,7 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 	printk("cipherbit in encrypt %d \n",tx_sc->cipherbit);
 	req = macsec_alloc_req(tx_sa->key[tx_sc->cipherbit].tfm, &iv, &sg, ret);
 	if (!req) {
+	printk("error 1\n");
 		macsec_txsa_put(tx_sa);
 		kfree_skb(skb);
 		return ERR_PTR(-ENOMEM);
@@ -776,6 +777,7 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 	sg_init_table(sg, ret);
 	ret = skb_to_sgvec(skb, sg, 0, skb->len);
 	if (unlikely(ret < 0)) {
+printk("error 2\n");
 		aead_request_free(req);
 		macsec_txsa_put(tx_sa);
 		kfree_skb(skb);
@@ -799,8 +801,10 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 	dev_hold(skb->dev);
 	ret = crypto_aead_encrypt(req);
 	if (ret == -EINPROGRESS) {
+printk("error 3\n");
 		return ERR_PTR(ret);
 	} else if (ret != 0) {
+printk("error 4\n");
 		dev_put(skb->dev);
 		kfree_skb(skb);
 		aead_request_free(req);
@@ -1126,6 +1130,8 @@ static rx_handler_result_t macsec_handle_frame(struct sk_buff **pskb)
     bool pulled_sci;
     int ret;
     bool more_fragments = false;
+printk("handle_frame_1\n");
+
 	if (skb_headroom(skb) < ETH_HLEN)
 		goto drop_direct;
 
@@ -1245,12 +1251,13 @@ static rx_handler_result_t macsec_handle_frame(struct sk_buff **pskb)
 	}
 
 	macsec_skb_cb(skb)->rx_sa = rx_sa;
-
+	printk("handle_frame_2_before decrypt\n");
 	/* Disabled && !changed text => skip validation */
 	if (hdr->tci_an & MACSEC_TCI_C ||
-	    secy->validate_frames != MACSEC_VALIDATE_DISABLED)
+	    secy->validate_frames != MACSEC_VALIDATE_DISABLED){
+printk("handle_frame_2_going in decrypt\n");
 		skb = macsec_decrypt(skb, dev, rx_sa, sci, secy,hdr->cipherbit);
-
+}
 	if (IS_ERR(skb)) {
 		/* the decrypt callback needs the reference */
 		if (PTR_ERR(skb) != -EINPROGRESS) {
