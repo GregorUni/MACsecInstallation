@@ -1,10 +1,8 @@
-#	sudo modprobe -r macsec
-	sudo rmmod macsec.ko
+	sudo modprobe -r macsec
+	#sudo rmmod macsec.ko
 	sudo make -C /lib/modules/$(uname -r)/build M=$(pwd) modules
 	#make -C /lib/modules/$(uname -r)/build M=$(pwd) modules_install	
 	#sudo depmod -A	
-	sudo cp macsec.ko /lib/modules/5.4.51-v7l+/kernel/drivers/net/
-	sudo cp macsec.ko /lib/modules/5.4.51-v7l+/extra/
-	sudo insmod macsec.ko
-
-	#sudo modprobe -v macsec
+	sudo cp macsec.ko /lib/modules/$(uname -r)/kernel/drivers/net/
+	sudo depmod
+	sudo modprobe -v macsec
