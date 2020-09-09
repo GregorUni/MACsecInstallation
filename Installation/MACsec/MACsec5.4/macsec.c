@@ -1517,9 +1517,12 @@ static struct crypto_aead *macsec_alloc_tfm(char *key, int key_len, int icv_len,
 						tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
 						break;
 		}
+	printk("chachapoly11\n");
 
 	if (IS_ERR(tfm))
 		return tfm;
+
+	printk("chachapoly222\n");
 
 	//if CHACHA_POLY Cipher is chosen, then the key needs to invoked manually.
 		if(csid == MACSEC_CIPHER_ID_CHACHA_POLY_256 )

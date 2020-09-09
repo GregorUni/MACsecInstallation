@@ -1,7 +1,7 @@
 #!/bin/bash
-#sudo apt-get update
-#sudo apt-get upgrade -y
-#sudo apt-get install iproute2 -y
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install iproute2 -y
 
 echo -m "install /sbin"
 install -m 0755 -d /sbin
@@ -34,22 +34,30 @@ sudo cp if_link.h /usr/include/linux
 
 ###########################
 #install kernel headers
-#sudo apt install raspberrypi-kernel-headers
+sudo apt install bc
+sudo apt install raspberrypi-kernel-headers
 bool=$(echo $(uname -r | grep -o -E '[0-9]+.[0-9]+')'>'5.0 | bc -l)
 echo $bool
 if [[ $bool == 1 ]]; then
 	cd MACsec/MACsec5.4
 	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
-#	make
-#	depmod -A
-#	#insmod /lib/modules/$(uname -r)/kernel/drivers/net/macsec.ko
-#	sudo modprobe macsec
-#else
+	make
+	sudo cp macsec.ko /lib/modules/$(uname -r)/kernel/drivers/net/
+	sudo depmod
+	sudo modprobe -v macsec
+	cd ../../chacha	
+	sudo bash script.txt
+else
 
-#	cd MACsec/MACsec4.19
-#	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
-#	make
-#	insmod /lib/modules/$(uname -r)/kernel/drivers/net/macsec.ko
+	cd MACsec/MACsec4.19
+	sudo cp if_macsec.h /lib/modules/$(uname -r)/build/include/uapi/linux
+	make
+	sudo cp macsec.ko /lib/modules/$(uname -r)/kernel/drivers/net/
+        sudo depmod
+        sudo modprobe -v macsec
+	cd ../../chacha 
+        sudo bash script.txt
+
 fi
 
 #cd ../..
