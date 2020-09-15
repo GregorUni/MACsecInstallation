@@ -512,10 +512,8 @@ static void macsec_set_shortlen(struct macsec_eth_header *h, size_t data_len, bo
         h->more_fragments |= MACSEC_SECTAG_MF_MASK;
     }
     //setting cipherbit for header
-	printk("cipherbit in shortlen %d\n",cipherbit);
     if(cipherbit){
     h->cipherbit |= MACSEC_SECTAG_CB_MASK;
-    printk("h->cipherbit %d\n",h->cipherbit);
 	}
 }
 
@@ -657,7 +655,6 @@ static struct aead_request *macsec_alloc_req(struct crypto_aead *tfm,
 	size_t size, iv_offset, sg_offset;
 	struct aead_request *req;
 	void *tmp;
-	printk("alloc_req_tfm %d\n",crypto_aead_reqsize(tfm));
 	size = sizeof(struct aead_request) + crypto_aead_reqsize(tfm);
 	iv_offset = size;
 	size += crypto_aead_ivsize(tfm);
@@ -742,7 +739,6 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
         return ERR_PTR(-ENOLINK);
     }
 
-    printk("macsec_encrypt cipherbit %d\n",tx_sc->cipherbit);
     macsec_fill_sectag(hh, secy, pn, sci_present);
     macsec_set_shortlen(hh, unprotected_len - 2 * ETH_ALEN, macsec_skb_cb(skb)->more_fragments,tx_sc->cipherbit);
 
@@ -766,11 +762,9 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-	printk("ret in encrypt %d \n",ret);
-	printk("cipherbit in encrypt %d \n",tx_sc->cipherbit);
+
 	req = macsec_alloc_req(tx_sa->key[tx_sc->cipherbit].tfm, &iv, &sg, ret);
 	if (!req) {
-	printk("error 1\n");
 		macsec_txsa_put(tx_sa);
 		kfree_skb(skb);
 		return ERR_PTR(-ENOMEM);
@@ -781,7 +775,6 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 	sg_init_table(sg, ret);
 	ret = skb_to_sgvec(skb, sg, 0, skb->len);
 	if (unlikely(ret < 0)) {
-printk("error 2\n");
 		aead_request_free(req);
 		macsec_txsa_put(tx_sa);
 		kfree_skb(skb);
@@ -804,12 +797,10 @@ printk("error 2\n");
 
 	dev_hold(skb->dev);
 	ret = crypto_aead_encrypt(req);
-printk("ret %d\n",ret);
 	if (ret == -EINPROGRESS) {
-printk("error 3\n");
 		return ERR_PTR(ret);
 	} else if (ret != 0) {
-printk("error 4\n");
+
 		dev_put(skb->dev);
 		kfree_skb(skb);
 		aead_request_free(req);
@@ -987,7 +978,6 @@ static struct sk_buff *macsec_decrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-	printk("decrypt cipherbit %d \n",cipherbit);
 	req = macsec_alloc_req(rx_sa->key[cipherbit].tfm, &iv, &sg, ret);
 	if (!req) {
 		kfree_skb(skb);
@@ -1135,7 +1125,6 @@ static rx_handler_result_t macsec_handle_frame(struct sk_buff **pskb)
     bool pulled_sci;
     int ret;
     bool more_fragments = false;
-printk("handle_frame_1\n");
 
 	if (skb_headroom(skb) < ETH_HLEN)
 		goto drop_direct;
@@ -1256,11 +1245,9 @@ printk("handle_frame_1\n");
 	}
 
 	macsec_skb_cb(skb)->rx_sa = rx_sa;
-	printk("handle_frame_2_before decrypt\n");
 	/* Disabled && !changed text => skip validation */
 	if (hdr->tci_an & MACSEC_TCI_C ||
 	    secy->validate_frames != MACSEC_VALIDATE_DISABLED){
-printk("handle_frame_2_going in decrypt\n");
 		skb = macsec_decrypt(skb, dev, rx_sa, sci, secy,hdr->cipherbit);
 }
 	if (IS_ERR(skb)) {
@@ -1542,7 +1529,6 @@ static struct crypto_aead *macsec_alloc_tfm(char *key, int key_len, int icv_len,
 	if (ret < 0)
 		goto fail;
 
-	printk("ret in tfm %d\n", ret);
 	return tfm;
 fail:
 	crypto_free_aead(tfm);
@@ -1555,25 +1541,21 @@ static struct crypto_aead *macsec_alloc_tfm_chacha(char *key, int key_len, int i
 	int ret;
 
 	char* mykey;
-						printk("ich war hier chachapoly\n");
 						mykey = "12345678901234567890123456789012";
 						key_len=32;
 						tfm = crypto_alloc_aead("rfc7539(chacha20,poly1305)", 0, CRYPTO_ALG_ASYNC);
 						printk("chachapoly\n");
 
 
-	  printk("chacha11111 \n");
 	if (IS_ERR(tfm))
 		return tfm;
 
 	//if CHACHA_POLY Cipher is chosen, then the key needs to invoked manually.
 	ret = crypto_aead_setkey(tfm, mykey, key_len);
-	printk("chacha1 %d\n", ret);
 	if (ret < 0)
                 goto fail;
 	
 	ret = crypto_aead_setauthsize(tfm, icv_len);
-	printk("chacha2 %d\n", ret);
 	if (ret < 0)
 		goto fail;
 
@@ -1590,20 +1572,15 @@ static int init_rx_sa(struct macsec_rx_sa *rx_sa, char *sak, int key_len,
 	if (!rx_sa->stats)
 		return -ENOMEM;
 
-	printk("before 1\n");
 	rx_sa->key[0].tfm = macsec_alloc_tfm(sak, key_len, icv_len,csid);
-printk("before 2\n");
 	rx_sa->key[1].tfm = macsec_alloc_tfm_chacha(sak, key_len, icv_len,csid);
-printk("after both\n");
 	if (IS_ERR(rx_sa->key[0].tfm)) {
 		free_percpu(rx_sa->stats);
-		printk("gcm_error\n");
 		return PTR_ERR(rx_sa->key[0].tfm);
 	}
 
 	if (IS_ERR(rx_sa->key[1].tfm)) {
 		free_percpu(rx_sa->stats);
-		printk("chacha_poly error\n");
 		return PTR_ERR(rx_sa->key[1].tfm);
 	}
 	rx_sa->active = false;
@@ -1702,12 +1679,10 @@ static int init_tx_sa(struct macsec_tx_sa *tx_sa, char *sak, int key_len,
 	tx_sa->key[1].tfm = macsec_alloc_tfm_chacha(sak, key_len, icv_len,csid);
 	if (IS_ERR(tx_sa->key[0].tfm)) {
 		free_percpu(tx_sa->stats);
-		printk("gcm_error\n");
 		return PTR_ERR(tx_sa->key[0].tfm);
 	}
 	if (IS_ERR(tx_sa->key[1].tfm)) {
 		free_percpu(tx_sa->stats);
-		printk("chacha_poly error\n");
 		return PTR_ERR(tx_sa->key[1].tfm);
 	}
 
