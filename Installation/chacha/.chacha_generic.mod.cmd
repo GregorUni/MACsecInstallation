@@ -1,0 +1,1 @@
+cmd_/home/pi/MACsecInstallation/Installation/chacha/chacha_generic.mod := { echo  /home/pi/MACsecInstallation/Installation/chacha/chacha_generic.o; echo; } > /home/pi/MACsecInstallation/Installation/chacha/chacha_generic.mod

@@ -1501,26 +1501,28 @@ static struct crypto_aead *macsec_alloc_tfm(char *key, int key_len, int icv_len,
 		switch (csid) {
 					case MACSEC_DEFAULT_CIPHER_ID :
 						printk("ich war hier gcm1\n");
-						tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
+						//tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
+						tfm = crypto_alloc_aead("gcm(aes)", 0, CRYPTO_ALG_ASYNC);
 						break;
 					case MACSEC_CIPHER_ID_CHACHA_POLY_256:
 						printk("ich war hier chachapoly\n");
 						mykey = "12345678901234567890123456789012";
-						key_len=32;
-						tfm = crypto_alloc_aead("rfc7539(chacha20,poly1305)", 0, 0);
+						//key_len=32;
+						//tfm = crypto_alloc_aead("rfc7539(chacha20,poly1305)", 0, 0);
 						printk("chachapoly\n");
 						break;
 					case MACSEC_CIPHER_ID_AEGIS128L_128:
-						tfm = crypto_alloc_aead("aegis128l", 0, 0);
+						//tfm = crypto_alloc_aead("aegis128l", 0, 0);
 						printk("ich war hier aegis128l\n ");
 						break;
 					case MACSEC_CIPHER_ID_MORUS640_128:
-						tfm = crypto_alloc_aead("morus640", 0, 0);
+						//tfm = crypto_alloc_aead("morus640", 0, 0);
 						printk("ich war hier morus640\n");
 						break;
 					default:
 						printk("ich war hier gcm2\n");
-						tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
+						//tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
+						tfm = crypto_alloc_aead("gcm(aes)", 0, CRYPTO_ALG_ASYNC);
 						break;
 		}
 

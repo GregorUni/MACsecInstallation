@@ -1,0 +1,1 @@
+cmd_/home/pi/MACsecInstallation/Installation/chacha/chacha_generic.ko := ld -r  -EL  --build-id  -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds -o /home/pi/MACsecInstallation/Installation/chacha/chacha_generic.ko /home/pi/MACsecInstallation/Installation/chacha/chacha_generic.o /home/pi/MACsecInstallation/Installation/chacha/chacha_generic.mod.o;  true

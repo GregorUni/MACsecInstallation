@@ -1,0 +1,1 @@
+cmd_/home/pi/MACsecInstallation/Installation/chacha/chacha20poly1305.ko := ld -r  -EL  --build-id  -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds -o /home/pi/MACsecInstallation/Installation/chacha/chacha20poly1305.ko /home/pi/MACsecInstallation/Installation/chacha/chacha20poly1305.o /home/pi/MACsecInstallation/Installation/chacha/chacha20poly1305.mod.o;  true

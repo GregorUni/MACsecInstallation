@@ -1,8 +1,8 @@
-cmd_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := gcc -Wp,-MD,/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/.macsec.mod.o.d  -nostdinc -isystem /usr/lib/gcc/arm-linux-gnueabihf/8/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mfpu=vfp -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -O2 --param=allow-store-data-races=0 -Wframe-larger-than=1024 -fstack-protector-strong -Wno-unused-but-set-variable -Wimplicit-fallthrough -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-stringop-truncation -Wno-array-bounds -Wno-stringop-overflow -Wno-restrict -Wno-maybe-uninitialized -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -fmacro-prefix-map=./= -Wno-packed-not-aligned  -DMODULE  -DKBUILD_BASENAME='"macsec.mod"' -DKBUILD_MODNAME='"macsec"' -c -o /home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o /home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.c
+cmd_/home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/macsec.mod.o := gcc -Wp,-MD,/home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/.macsec.mod.o.d  -nostdinc -isystem /usr/lib/gcc/arm-linux-gnueabihf/8/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mfpu=vfp -funwind-tables -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -Wframe-larger-than=1024 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wno-pointer-sign -Wno-stringop-truncation -Wno-array-bounds -Wno-stringop-overflow -Wno-restrict -Wno-maybe-uninitialized -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -fmacro-prefix-map=./= -Wno-packed-not-aligned  -DKBUILD_BASENAME='"macsec.mod"' -DKBUILD_MODNAME='"macsec"' -DMODULE  -c -o /home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/macsec.mod.o /home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/macsec.mod.c
 
-source_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := /home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.c
+source_/home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/macsec.mod.o := /home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/macsec.mod.c
 
-deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
+deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/macsec.mod.o := \
     $(wildcard include/config/module/unload.h) \
     $(wildcard include/config/retpoline.h) \
   include/linux/kconfig.h \
@@ -12,9 +12,8 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
   include/linux/compiler_types.h \
     $(wildcard include/config/have/arch/compiler/h.h) \
     $(wildcard include/config/enable/must/check.h) \
+    $(wildcard include/config/arch/supports/optimized/inlining.h) \
     $(wildcard include/config/optimize/inlining.h) \
-    $(wildcard include/config/cc/has/asm/inline.h) \
-  include/linux/compiler_attributes.h \
   include/linux/compiler-gcc.h \
     $(wildcard include/config/arch/use/builtin/bswap.h) \
   include/linux/build-salt.h \
@@ -84,13 +83,14 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/cpu/spectre.h) \
   include/asm-generic/barrier.h \
   include/linux/kasan-checks.h \
+  include/linux/const.h \
+  include/uapi/linux/const.h \
   include/linux/types.h \
     $(wildcard include/config/have/uid16.h) \
     $(wildcard include/config/uid16.h) \
+    $(wildcard include/config/lbdaf.h) \
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
-  include/linux/const.h \
-  include/uapi/linux/const.h \
   include/linux/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
@@ -132,8 +132,8 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
   include/asm-generic/bitops/const_hweight.h \
   include/asm-generic/bitops/lock.h \
   include/linux/atomic.h \
-  arch/arm/include/asm/atomic.h \
     $(wildcard include/config/generic/atomic64.h) \
+  arch/arm/include/asm/atomic.h \
   include/linux/prefetch.h \
   arch/arm/include/asm/processor.h \
     $(wildcard include/config/have/hw/breakpoint.h) \
@@ -148,7 +148,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/cpu/sa110.h) \
     $(wildcard include/config/cpu/v6.h) \
   include/asm-generic/cmpxchg-local.h \
-  include/linux/atomic-fallback.h \
   include/asm-generic/atomic-long.h \
   include/asm-generic/bitops/find.h \
     $(wildcard include/config/generic/find/first/bit.h) \
@@ -175,8 +174,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/kallsyms.h) \
     $(wildcard include/config/tracepoints.h) \
-    $(wildcard include/config/tree/srcu.h) \
-    $(wildcard include/config/bpf/events.h) \
     $(wildcard include/config/jump/label.h) \
     $(wildcard include/config/tracing.h) \
     $(wildcard include/config/event/tracing.h) \
@@ -195,8 +192,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/arch/has/refcount.h) \
     $(wildcard include/config/panic/timeout.h) \
   /usr/lib/gcc/arm-linux-gnueabihf/8/include/stdarg.h \
-  include/linux/limits.h \
-  include/uapi/linux/limits.h \
   include/linux/linkage.h \
   include/linux/stringify.h \
   include/linux/export.h \
@@ -233,7 +228,7 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/debug/lock/alloc.h) \
   include/linux/spinlock.h \
     $(wildcard include/config/debug/spinlock.h) \
-    $(wildcard include/config/preemption.h) \
+    $(wildcard include/config/preempt.h) \
   include/linux/preempt.h \
     $(wildcard include/config/preempt/count.h) \
     $(wildcard include/config/debug/preempt.h) \
@@ -256,21 +251,17 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
   include/linux/restart_block.h \
   include/linux/time64.h \
+    $(wildcard include/config/64bit/time.h) \
   include/linux/math64.h \
     $(wildcard include/config/arch/supports/int128.h) \
   include/uapi/linux/time.h \
-  include/uapi/linux/time_types.h \
   arch/arm/include/asm/thread_info.h \
-    $(wildcard include/config/stackprotector/per/task.h) \
     $(wildcard include/config/crunch.h) \
     $(wildcard include/config/arm/thumbee.h) \
   arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
   include/linux/bottom_half.h \
-  arch/arm/include/generated/asm/mmiowb.h \
-  include/asm-generic/mmiowb.h \
-    $(wildcard include/config/mmiowb.h) \
   include/linux/spinlock_types.h \
   arch/arm/include/asm/spinlock_types.h \
   include/linux/lockdep.h \
@@ -279,7 +270,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
   include/linux/rwlock_types.h \
   arch/arm/include/asm/spinlock.h \
   include/linux/rwlock.h \
-    $(wildcard include/config/preempt.h) \
   include/linux/spinlock_api_smp.h \
     $(wildcard include/config/inline/spin/lock.h) \
     $(wildcard include/config/inline/spin/lock/bh.h) \
@@ -312,14 +302,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/inline/read/unlock/irqrestore.h) \
     $(wildcard include/config/inline/write/unlock/irqrestore.h) \
   include/linux/time32.h \
-  include/linux/timex.h \
-  include/uapi/linux/timex.h \
-  include/uapi/linux/param.h \
-  arch/arm/include/generated/uapi/asm/param.h \
-  include/asm-generic/param.h \
-    $(wildcard include/config/hz.h) \
-  include/uapi/asm-generic/param.h \
-  arch/arm/include/asm/timex.h \
   include/linux/uidgid.h \
     $(wildcard include/config/multiuser.h) \
     $(wildcard include/config/user/ns.h) \
@@ -332,23 +314,22 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/zone/device.h) \
     $(wildcard include/config/numa.h) \
     $(wildcard include/config/pm/sleep.h) \
-    $(wildcard include/config/contig/alloc.h) \
+    $(wildcard include/config/memory/isolation.h) \
+    $(wildcard include/config/compaction.h) \
     $(wildcard include/config/cma.h) \
   include/linux/mmdebug.h \
     $(wildcard include/config/debug/vm.h) \
     $(wildcard include/config/debug/vm/pgflags.h) \
   include/linux/mmzone.h \
     $(wildcard include/config/force/max/zoneorder.h) \
-    $(wildcard include/config/memory/isolation.h) \
-    $(wildcard include/config/shuffle/page/allocator.h) \
     $(wildcard include/config/zsmalloc.h) \
     $(wildcard include/config/memcg.h) \
     $(wildcard include/config/memory/hotplug.h) \
-    $(wildcard include/config/compaction.h) \
-    $(wildcard include/config/transparent/hugepage.h) \
     $(wildcard include/config/flat/node/mem/map.h) \
     $(wildcard include/config/page/extension.h) \
+    $(wildcard include/config/no/bootmem.h) \
     $(wildcard include/config/deferred/struct/page/init.h) \
+    $(wildcard include/config/transparent/hugepage.h) \
     $(wildcard include/config/have/memory/present.h) \
     $(wildcard include/config/have/memoryless/nodes.h) \
     $(wildcard include/config/have/memblock/node/map.h) \
@@ -380,27 +361,33 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/linux/page-flags-layout.h \
     $(wildcard include/config/numa/balancing.h) \
-    $(wildcard include/config/kasan/sw/tags.h) \
   include/generated/bounds.h \
-  include/linux/mm_types.h \
-    $(wildcard include/config/have/aligned/struct/page.h) \
-    $(wildcard include/config/userfaultfd.h) \
-    $(wildcard include/config/swap.h) \
-    $(wildcard include/config/have/arch/compat/mmap/bases.h) \
-    $(wildcard include/config/membarrier.h) \
-    $(wildcard include/config/aio.h) \
-    $(wildcard include/config/mmu/notifier.h) \
-    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
-  include/linux/mm_types_task.h \
-    $(wildcard include/config/split/ptlock/cpus.h) \
-    $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
-  include/linux/cpumask.h \
-    $(wildcard include/config/cpumask/offstack.h) \
-    $(wildcard include/config/hotplug/cpu.h) \
-    $(wildcard include/config/debug/per/cpu/maps.h) \
-  include/linux/auxvec.h \
-  include/uapi/linux/auxvec.h \
-  include/linux/rbtree.h \
+  include/linux/memory_hotplug.h \
+    $(wildcard include/config/arch/has/add/pages.h) \
+    $(wildcard include/config/have/arch/nodedata/extension.h) \
+    $(wildcard include/config/have/bootmem/info/node.h) \
+  include/linux/notifier.h \
+    $(wildcard include/config/tree/srcu.h) \
+  include/linux/errno.h \
+  include/uapi/linux/errno.h \
+  arch/arm/include/generated/uapi/asm/errno.h \
+  include/uapi/asm-generic/errno.h \
+  include/uapi/asm-generic/errno-base.h \
+  include/linux/mutex.h \
+    $(wildcard include/config/mutex/spin/on/owner.h) \
+    $(wildcard include/config/debug/mutexes.h) \
+  include/linux/osq_lock.h \
+  include/linux/debug_locks.h \
+    $(wildcard include/config/debug/locking/api/selftests.h) \
+  include/linux/rwsem.h \
+    $(wildcard include/config/rwsem/spin/on/owner.h) \
+    $(wildcard include/config/rwsem/generic/spinlock.h) \
+  include/linux/err.h \
+  arch/arm/include/generated/asm/rwsem.h \
+  include/asm-generic/rwsem.h \
+  include/linux/srcu.h \
+    $(wildcard include/config/tiny/srcu.h) \
+    $(wildcard include/config/srcu.h) \
   include/linux/rcupdate.h \
     $(wildcard include/config/preempt/rcu.h) \
     $(wildcard include/config/rcu/stall/common.h) \
@@ -410,79 +397,55 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/tiny/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
+    $(wildcard include/config/hotplug/cpu.h) \
     $(wildcard include/config/prove/rcu.h) \
     $(wildcard include/config/rcu/boost.h) \
     $(wildcard include/config/arch/weak/release/acquire.h) \
+  include/linux/cpumask.h \
+    $(wildcard include/config/cpumask/offstack.h) \
+    $(wildcard include/config/debug/per/cpu/maps.h) \
   include/linux/rcutree.h \
-  include/linux/rwsem.h \
-    $(wildcard include/config/rwsem/spin/on/owner.h) \
-    $(wildcard include/config/debug/rwsems.h) \
-  include/linux/err.h \
-  arch/arm/include/generated/uapi/asm/errno.h \
-  include/uapi/asm-generic/errno.h \
-  include/uapi/asm-generic/errno-base.h \
-  include/linux/osq_lock.h \
-  include/linux/completion.h \
-  include/linux/uprobes.h \
-    $(wildcard include/config/uprobes.h) \
-  include/linux/errno.h \
-  include/uapi/linux/errno.h \
   include/linux/workqueue.h \
     $(wildcard include/config/debug/objects/work.h) \
     $(wildcard include/config/freezer.h) \
     $(wildcard include/config/wq/watchdog.h) \
   include/linux/timer.h \
     $(wildcard include/config/debug/objects/timers.h) \
-    $(wildcard include/config/preempt/rt.h) \
     $(wildcard include/config/no/hz/common.h) \
   include/linux/ktime.h \
   include/linux/jiffies.h \
+  include/linux/timex.h \
+  include/uapi/linux/timex.h \
+  include/uapi/linux/param.h \
+  arch/arm/include/generated/uapi/asm/param.h \
+  include/asm-generic/param.h \
+    $(wildcard include/config/hz.h) \
+  include/uapi/asm-generic/param.h \
+  arch/arm/include/asm/timex.h \
   include/generated/timeconst.h \
   include/linux/timekeeping.h \
   include/linux/timekeeping32.h \
   include/linux/debugobjects.h \
     $(wildcard include/config/debug/objects.h) \
     $(wildcard include/config/debug/objects/free.h) \
-  arch/arm/include/asm/mmu.h \
-    $(wildcard include/config/cpu/has/asid.h) \
-  include/linux/page-flags.h \
-    $(wildcard include/config/arch/uses/pg/uncached.h) \
-    $(wildcard include/config/memory/failure.h) \
-    $(wildcard include/config/idle/page/tracking.h) \
-    $(wildcard include/config/thp/swap.h) \
-    $(wildcard include/config/ksm.h) \
-  include/linux/memory_hotplug.h \
-    $(wildcard include/config/arch/has/add/pages.h) \
-    $(wildcard include/config/have/arch/nodedata/extension.h) \
-    $(wildcard include/config/have/bootmem/info/node.h) \
-  include/linux/notifier.h \
-  include/linux/mutex.h \
-    $(wildcard include/config/mutex/spin/on/owner.h) \
-    $(wildcard include/config/debug/mutexes.h) \
-  include/linux/debug_locks.h \
-    $(wildcard include/config/debug/locking/api/selftests.h) \
-  include/linux/srcu.h \
-    $(wildcard include/config/tiny/srcu.h) \
-    $(wildcard include/config/srcu.h) \
   include/linux/rcu_segcblist.h \
   include/linux/srcutree.h \
   include/linux/rcu_node_tree.h \
     $(wildcard include/config/rcu/fanout.h) \
     $(wildcard include/config/rcu/fanout/leaf.h) \
+  include/linux/completion.h \
   include/linux/topology.h \
     $(wildcard include/config/use/percpu/numa/node/id.h) \
     $(wildcard include/config/sched/smt.h) \
-  include/linux/arch_topology.h \
-    $(wildcard include/config/generic/arch/topology.h) \
-  include/linux/percpu.h \
-    $(wildcard include/config/need/per/cpu/embed/first/chunk.h) \
-    $(wildcard include/config/need/per/cpu/page/first/chunk.h) \
-    $(wildcard include/config/have/setup/per/cpu/area.h) \
   include/linux/smp.h \
     $(wildcard include/config/up/late/init.h) \
   include/linux/llist.h \
     $(wildcard include/config/arch/have/nmi/safe/cmpxchg.h) \
   arch/arm/include/asm/smp.h \
+  include/linux/percpu.h \
+    $(wildcard include/config/need/per/cpu/embed/first/chunk.h) \
+    $(wildcard include/config/need/per/cpu/page/first/chunk.h) \
+    $(wildcard include/config/have/setup/per/cpu/area.h) \
   arch/arm/include/asm/percpu.h \
   include/asm-generic/percpu.h \
   include/linux/percpu-defs.h \
@@ -490,9 +453,11 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/amd/mem/encrypt.h) \
   arch/arm/include/asm/topology.h \
     $(wildcard include/config/arm/cpu/topology.h) \
+  include/linux/arch_topology.h \
   include/asm-generic/topology.h \
   include/linux/sysctl.h \
     $(wildcard include/config/sysctl.h) \
+  include/linux/rbtree.h \
   include/uapi/linux/sysctl.h \
   include/linux/kobject.h \
     $(wildcard include/config/uevent/helper.h) \
@@ -502,9 +467,7 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/kernfs.h) \
   include/linux/idr.h \
   include/linux/radix-tree.h \
-  include/linux/xarray.h \
-    $(wildcard include/config/xarray/multi.h) \
-  include/linux/kconfig.h \
+    $(wildcard include/config/radix/tree/multiorder.h) \
   include/linux/kobject_ns.h \
   include/linux/kref.h \
   include/linux/refcount.h \
@@ -514,7 +477,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
     $(wildcard include/config/ia64.h) \
     $(wildcard include/config/ppc64.h) \
   include/linux/jump_label.h \
-    $(wildcard include/config/have/arch/jump/label/relative.h) \
   arch/arm/include/asm/jump_label.h \
   include/linux/rbtree_latch.h \
   include/linux/error-injection.h \
@@ -531,6 +493,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o := \
   include/linux/vermagic.h \
   include/generated/utsrelease.h \
 
-/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o: $(deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o)
+/home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/macsec.mod.o: $(deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/macsec.mod.o)
 
-$(deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.mod.o):
+$(deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec4.19/macsec.mod.o):

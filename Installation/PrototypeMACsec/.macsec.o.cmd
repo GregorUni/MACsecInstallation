@@ -239,7 +239,7 @@ deps_/home/pi/MACsecInstallation/Installation/PrototypeMACsec/macsec.o := \
     $(wildcard include/config/kuser/helpers.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
   arch/arm/include/asm/glue.h \
-  arch/arm/include/asm/pgtable-3level-types.h \
+  arch/arm/include/asm/pgtable-2level-types.h \
   arch/arm/include/asm/memory.h \
     $(wildcard include/config/need/mach/memory/h.h) \
     $(wildcard include/config/page/offset.h) \
@@ -566,9 +566,7 @@ deps_/home/pi/MACsecInstallation/Installation/PrototypeMACsec/macsec.o := \
   include/asm-generic/pgtable-nop4d-hack.h \
   include/asm-generic/5level-fixup.h \
   arch/arm/include/asm/pgtable-hwdef.h \
-  arch/arm/include/asm/pgtable-3level-hwdef.h \
-    $(wildcard include/config/vmsplit/2g.h) \
-    $(wildcard include/config/vmsplit/3g.h) \
+  arch/arm/include/asm/pgtable-2level-hwdef.h \
   arch/arm/include/asm/tlbflush.h \
     $(wildcard include/config/smp/on/up.h) \
     $(wildcard include/config/cpu/tlb/v4wt.h) \
@@ -693,7 +691,7 @@ deps_/home/pi/MACsecInstallation/Installation/PrototypeMACsec/macsec.o := \
     $(wildcard include/config/posix/timers.h) \
   include/linux/alarmtimer.h \
   include/uapi/linux/rseq.h \
-  arch/arm/include/asm/pgtable-3level.h \
+  arch/arm/include/asm/pgtable-2level.h \
   include/asm-generic/pgtable.h \
     $(wildcard include/config/pgtable/levels.h) \
     $(wildcard include/config/have/arch/transparent/hugepage/pud.h) \
@@ -1237,7 +1235,6 @@ deps_/home/pi/MACsecInstallation/Installation/PrototypeMACsec/macsec.o := \
   arch/arm/include/asm/outercache.h \
     $(wildcard include/config/outer/cache/sync.h) \
   arch/arm/include/asm/kmap_types.h \
-  arch/arm/include/asm/highmem.h \
   include/linux/hugetlb_inline.h \
   include/linux/mempool.h \
   include/linux/bio.h \

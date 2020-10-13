@@ -1,8 +1,8 @@
-cmd_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := gcc -Wp,-MD,/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/.macsec.o.d  -nostdinc -isystem /usr/lib/gcc/arm-linux-gnueabihf/8/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mfpu=vfp -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -O2 --param=allow-store-data-races=0 -Wframe-larger-than=1024 -fstack-protector-strong -Wno-unused-but-set-variable -Wimplicit-fallthrough -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-stringop-truncation -Wno-array-bounds -Wno-stringop-overflow -Wno-restrict -Wno-maybe-uninitialized -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -fmacro-prefix-map=./= -Wno-packed-not-aligned  -DMODULE  -DKBUILD_BASENAME='"macsec"' -DKBUILD_MODNAME='"macsec"' -c -o /home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o /home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.c
+cmd_/home/pi/MACsecInstallation/Installation/chacha/chacha_generic.o := gcc -Wp,-MD,/home/pi/MACsecInstallation/Installation/chacha/.chacha_generic.o.d  -nostdinc -isystem /usr/lib/gcc/arm-linux-gnueabihf/8/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mfpu=vfp -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -O2 --param=allow-store-data-races=0 -Wframe-larger-than=1024 -fstack-protector-strong -Wno-unused-but-set-variable -Wimplicit-fallthrough -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-stringop-truncation -Wno-array-bounds -Wno-stringop-overflow -Wno-restrict -Wno-maybe-uninitialized -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -fmacro-prefix-map=./= -Wno-packed-not-aligned  -DMODULE  -DKBUILD_BASENAME='"chacha_generic"' -DKBUILD_MODNAME='"chacha_generic"' -c -o /home/pi/MACsecInstallation/Installation/chacha/chacha_generic.o /home/pi/MACsecInstallation/Installation/chacha/chacha_generic.c
 
-source_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := /home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.c
+source_/home/pi/MACsecInstallation/Installation/chacha/chacha_generic.o := /home/pi/MACsecInstallation/Installation/chacha/chacha_generic.c
 
-deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
+deps_/home/pi/MACsecInstallation/Installation/chacha/chacha_generic.o := \
   include/linux/kconfig.h \
     $(wildcard include/config/cpu/big/endian.h) \
     $(wildcard include/config/booger.h) \
@@ -16,6 +16,11 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   include/linux/compiler-gcc.h \
     $(wildcard include/config/retpoline.h) \
     $(wildcard include/config/arch/use/builtin/bswap.h) \
+  arch/arm/include/asm/unaligned.h \
+    $(wildcard include/config/have/efficient/unaligned/access.h) \
+  arch/arm/include/uapi/asm/byteorder.h \
+  include/linux/byteorder/little_endian.h \
+  include/uapi/linux/byteorder/little_endian.h \
   include/linux/types.h \
     $(wildcard include/config/have/uid16.h) \
     $(wildcard include/config/uid16.h) \
@@ -35,28 +40,29 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   include/linux/compiler_types.h \
   arch/arm/include/uapi/asm/posix_types.h \
   include/uapi/asm-generic/posix_types.h \
-  include/linux/skbuff.h \
-    $(wildcard include/config/nf/conntrack.h) \
-    $(wildcard include/config/bridge/netfilter.h) \
-    $(wildcard include/config/net/tc/skb/ext.h) \
-    $(wildcard include/config/highmem.h) \
-    $(wildcard include/config/skb/extensions.h) \
-    $(wildcard include/config/ipv6/ndisc/nodetype.h) \
-    $(wildcard include/config/net/switchdev.h) \
-    $(wildcard include/config/net/cls/act.h) \
-    $(wildcard include/config/net/redirect.h) \
-    $(wildcard include/config/tls/device.h) \
-    $(wildcard include/config/net/sched.h) \
-    $(wildcard include/config/net/rx/busy/poll.h) \
-    $(wildcard include/config/xps.h) \
-    $(wildcard include/config/network/secmark.h) \
-    $(wildcard include/config/net.h) \
-    $(wildcard include/config/have/efficient/unaligned/access.h) \
-    $(wildcard include/config/network/phy/timestamping.h) \
-    $(wildcard include/config/xfrm.h) \
-    $(wildcard include/config/netfilter/xt/target/trace.h) \
-    $(wildcard include/config/nf/tables.h) \
-    $(wildcard include/config/ip/vs.h) \
+  include/linux/swab.h \
+  include/uapi/linux/swab.h \
+  include/linux/compiler.h \
+    $(wildcard include/config/trace/branch/profiling.h) \
+    $(wildcard include/config/profile/all/branches.h) \
+    $(wildcard include/config/stack/validation.h) \
+    $(wildcard include/config/kasan.h) \
+  arch/arm/include/asm/barrier.h \
+    $(wildcard include/config/cpu/32v6k.h) \
+    $(wildcard include/config/thumb2/kernel.h) \
+    $(wildcard include/config/cpu/xsc3.h) \
+    $(wildcard include/config/cpu/fa526.h) \
+    $(wildcard include/config/arm/heavy/mb.h) \
+    $(wildcard include/config/arm/dma/mem/bufferable.h) \
+    $(wildcard include/config/smp.h) \
+    $(wildcard include/config/cpu/spectre.h) \
+  include/asm-generic/barrier.h \
+  include/linux/kasan-checks.h \
+  arch/arm/include/asm/swab.h \
+  arch/arm/include/uapi/asm/swab.h \
+  include/linux/byteorder/generic.h \
+  include/linux/unaligned/le_struct.h \
+  include/linux/unaligned/packed_struct.h \
   include/linux/kernel.h \
     $(wildcard include/config/preempt/voluntary.h) \
     $(wildcard include/config/debug/atomic/sleep.h) \
@@ -79,22 +85,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/trim/unused/ksyms.h) \
     $(wildcard include/config/unused/symbols.h) \
   arch/arm/include/asm/linkage.h \
-  include/linux/compiler.h \
-    $(wildcard include/config/trace/branch/profiling.h) \
-    $(wildcard include/config/profile/all/branches.h) \
-    $(wildcard include/config/stack/validation.h) \
-    $(wildcard include/config/kasan.h) \
-  arch/arm/include/asm/barrier.h \
-    $(wildcard include/config/cpu/32v6k.h) \
-    $(wildcard include/config/thumb2/kernel.h) \
-    $(wildcard include/config/cpu/xsc3.h) \
-    $(wildcard include/config/cpu/fa526.h) \
-    $(wildcard include/config/arm/heavy/mb.h) \
-    $(wildcard include/config/arm/dma/mem/bufferable.h) \
-    $(wildcard include/config/smp.h) \
-    $(wildcard include/config/cpu/spectre.h) \
-  include/asm-generic/barrier.h \
-  include/linux/kasan-checks.h \
   include/linux/bitops.h \
   include/linux/bits.h \
   include/linux/const.h \
@@ -151,14 +141,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   include/asm-generic/bitops/find.h \
     $(wildcard include/config/generic/find/first/bit.h) \
   include/asm-generic/bitops/le.h \
-  arch/arm/include/uapi/asm/byteorder.h \
-  include/linux/byteorder/little_endian.h \
-  include/uapi/linux/byteorder/little_endian.h \
-  include/linux/swab.h \
-  include/uapi/linux/swab.h \
-  arch/arm/include/asm/swab.h \
-  arch/arm/include/uapi/asm/swab.h \
-  include/linux/byteorder/generic.h \
   include/asm-generic/bitops/ext2-atomic-setbit.h \
   include/linux/log2.h \
     $(wildcard include/config/arch/has/ilog2/u32.h) \
@@ -183,29 +165,16 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   arch/arm/include/asm/div64.h \
   arch/arm/include/asm/compiler.h \
   include/asm-generic/div64.h \
-  include/linux/time.h \
-    $(wildcard include/config/arch/uses/gettimeoffset.h) \
-  include/linux/seqlock.h \
-    $(wildcard include/config/debug/lock/alloc.h) \
-  include/linux/spinlock.h \
-    $(wildcard include/config/debug/spinlock.h) \
-    $(wildcard include/config/preemption.h) \
-  include/linux/preempt.h \
-    $(wildcard include/config/preempt/count.h) \
-    $(wildcard include/config/debug/preempt.h) \
-    $(wildcard include/config/trace/preempt/toggle.h) \
-    $(wildcard include/config/preempt/notifiers.h) \
+  include/linux/unaligned/be_byteshift.h \
+  include/linux/unaligned/generic.h \
+  include/crypto/algapi.h \
+  include/linux/crypto.h \
+    $(wildcard include/config/crypto/stats.h) \
   include/linux/list.h \
     $(wildcard include/config/debug/list.h) \
   include/linux/poison.h \
     $(wildcard include/config/illegal/pointer/value.h) \
     $(wildcard include/config/page/poisoning/zero.h) \
-  arch/arm/include/generated/asm/preempt.h \
-  include/asm-generic/preempt.h \
-  include/linux/thread_info.h \
-    $(wildcard include/config/thread/info/in/task.h) \
-    $(wildcard include/config/have/arch/within/stack/frames.h) \
-    $(wildcard include/config/hardened/usercopy.h) \
   include/linux/bug.h \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/bug/on/data/corruption.h) \
@@ -216,6 +185,70 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
+  include/linux/slab.h \
+    $(wildcard include/config/debug/slab.h) \
+    $(wildcard include/config/debug/objects.h) \
+    $(wildcard include/config/failslab.h) \
+    $(wildcard include/config/memcg/kmem.h) \
+    $(wildcard include/config/have/hardened/usercopy/allocator.h) \
+    $(wildcard include/config/slab.h) \
+    $(wildcard include/config/slub.h) \
+    $(wildcard include/config/slob.h) \
+    $(wildcard include/config/zone/dma.h) \
+    $(wildcard include/config/numa.h) \
+  include/linux/gfp.h \
+    $(wildcard include/config/lockdep.h) \
+    $(wildcard include/config/highmem.h) \
+    $(wildcard include/config/zone/dma32.h) \
+    $(wildcard include/config/zone/device.h) \
+    $(wildcard include/config/pm/sleep.h) \
+    $(wildcard include/config/contig/alloc.h) \
+    $(wildcard include/config/cma.h) \
+  include/linux/mmdebug.h \
+    $(wildcard include/config/debug/vm.h) \
+    $(wildcard include/config/debug/virtual.h) \
+    $(wildcard include/config/debug/vm/pgflags.h) \
+  include/linux/mmzone.h \
+    $(wildcard include/config/force/max/zoneorder.h) \
+    $(wildcard include/config/memory/isolation.h) \
+    $(wildcard include/config/shuffle/page/allocator.h) \
+    $(wildcard include/config/zsmalloc.h) \
+    $(wildcard include/config/memcg.h) \
+    $(wildcard include/config/sparsemem.h) \
+    $(wildcard include/config/memory/hotplug.h) \
+    $(wildcard include/config/compaction.h) \
+    $(wildcard include/config/discontigmem.h) \
+    $(wildcard include/config/transparent/hugepage.h) \
+    $(wildcard include/config/flat/node/mem/map.h) \
+    $(wildcard include/config/page/extension.h) \
+    $(wildcard include/config/deferred/struct/page/init.h) \
+    $(wildcard include/config/have/memory/present.h) \
+    $(wildcard include/config/have/memoryless/nodes.h) \
+    $(wildcard include/config/have/memblock/node/map.h) \
+    $(wildcard include/config/need/multiple/nodes.h) \
+    $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
+    $(wildcard include/config/flatmem.h) \
+    $(wildcard include/config/sparsemem/extreme.h) \
+    $(wildcard include/config/memory/hotremove.h) \
+    $(wildcard include/config/sparsemem/vmemmap.h) \
+    $(wildcard include/config/have/arch/pfn/valid.h) \
+    $(wildcard include/config/holes/in/zone.h) \
+    $(wildcard include/config/arch/has/holes/memorymodel.h) \
+  include/linux/spinlock.h \
+    $(wildcard include/config/debug/spinlock.h) \
+    $(wildcard include/config/preemption.h) \
+    $(wildcard include/config/debug/lock/alloc.h) \
+  include/linux/preempt.h \
+    $(wildcard include/config/preempt/count.h) \
+    $(wildcard include/config/debug/preempt.h) \
+    $(wildcard include/config/trace/preempt/toggle.h) \
+    $(wildcard include/config/preempt/notifiers.h) \
+  arch/arm/include/generated/asm/preempt.h \
+  include/asm-generic/preempt.h \
+  include/linux/thread_info.h \
+    $(wildcard include/config/thread/info/in/task.h) \
+    $(wildcard include/config/have/arch/within/stack/frames.h) \
+    $(wildcard include/config/hardened/usercopy.h) \
   include/linux/restart_block.h \
   include/linux/time64.h \
   include/linux/math64.h \
@@ -237,7 +270,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/cpu/xscale.h) \
     $(wildcard include/config/cpu/copy/v6.h) \
     $(wildcard include/config/kuser/helpers.h) \
-    $(wildcard include/config/have/arch/pfn/valid.h) \
   arch/arm/include/asm/glue.h \
   arch/arm/include/asm/pgtable-2level-types.h \
   arch/arm/include/asm/memory.h \
@@ -250,13 +282,8 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/arm/patch/phys/virt.h) \
     $(wildcard include/config/phys/offset.h) \
     $(wildcard include/config/xip/phys/addr.h) \
-    $(wildcard include/config/debug/virtual.h) \
   include/linux/sizes.h \
   include/asm-generic/memory_model.h \
-    $(wildcard include/config/flatmem.h) \
-    $(wildcard include/config/discontigmem.h) \
-    $(wildcard include/config/sparsemem/vmemmap.h) \
-    $(wildcard include/config/sparsemem.h) \
   include/linux/pfn.h \
   include/asm-generic/getorder.h \
   include/linux/bottom_half.h \
@@ -266,7 +293,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   include/linux/spinlock_types.h \
   arch/arm/include/asm/spinlock_types.h \
   include/linux/lockdep.h \
-    $(wildcard include/config/lockdep.h) \
     $(wildcard include/config/lock/stat.h) \
   include/linux/rwlock_types.h \
   arch/arm/include/asm/spinlock.h \
@@ -303,83 +329,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/inline/write/unlock/irq.h) \
     $(wildcard include/config/inline/read/unlock/irqrestore.h) \
     $(wildcard include/config/inline/write/unlock/irqrestore.h) \
-  include/linux/time32.h \
-  include/linux/timex.h \
-  include/uapi/linux/timex.h \
-  include/uapi/linux/param.h \
-  arch/arm/include/generated/uapi/asm/param.h \
-  include/asm-generic/param.h \
-    $(wildcard include/config/hz.h) \
-  include/uapi/asm-generic/param.h \
-  arch/arm/include/asm/timex.h \
-  include/linux/bvec.h \
-  include/linux/errno.h \
-  include/uapi/linux/errno.h \
-  arch/arm/include/generated/uapi/asm/errno.h \
-  include/uapi/asm-generic/errno.h \
-  include/uapi/asm-generic/errno-base.h \
-  include/linux/mm.h \
-    $(wildcard include/config/need/multiple/nodes.h) \
-    $(wildcard include/config/sysctl.h) \
-    $(wildcard include/config/have/arch/mmap/rnd/bits.h) \
-    $(wildcard include/config/have/arch/mmap/rnd/compat/bits.h) \
-    $(wildcard include/config/mem/soft/dirty.h) \
-    $(wildcard include/config/arch/uses/high/vma/flags.h) \
-    $(wildcard include/config/arch/has/pkeys.h) \
-    $(wildcard include/config/ppc.h) \
-    $(wildcard include/config/x86.h) \
-    $(wildcard include/config/parisc.h) \
-    $(wildcard include/config/ia64.h) \
-    $(wildcard include/config/sparc64.h) \
-    $(wildcard include/config/x86/intel/mpx.h) \
-    $(wildcard include/config/stack/growsup.h) \
-    $(wildcard include/config/numa.h) \
-    $(wildcard include/config/shmem.h) \
-    $(wildcard include/config/arch/has/pte/devmap.h) \
-    $(wildcard include/config/transparent/hugepage.h) \
-    $(wildcard include/config/hugetlb/page.h) \
-    $(wildcard include/config/zone/device.h) \
-    $(wildcard include/config/dev/pagemap/ops.h) \
-    $(wildcard include/config/device/private.h) \
-    $(wildcard include/config/pci/p2pdma.h) \
-    $(wildcard include/config/numa/balancing.h) \
-    $(wildcard include/config/kasan/sw/tags.h) \
-    $(wildcard include/config/memcg.h) \
-    $(wildcard include/config/have/memblock/node/map.h) \
-    $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
-    $(wildcard include/config/flat/node/mem/map.h) \
-    $(wildcard include/config/debug/vm/rb.h) \
-    $(wildcard include/config/page/poisoning.h) \
-    $(wildcard include/config/init/on/alloc/default/on.h) \
-    $(wildcard include/config/init/on/free/default/on.h) \
-    $(wildcard include/config/debug/pagealloc.h) \
-    $(wildcard include/config/arch/has/set/direct/map.h) \
-    $(wildcard include/config/hibernation.h) \
-    $(wildcard include/config/memory/hotplug.h) \
-    $(wildcard include/config/hugetlbfs.h) \
-  include/linux/mmdebug.h \
-    $(wildcard include/config/debug/vm.h) \
-    $(wildcard include/config/debug/vm/pgflags.h) \
-  include/linux/gfp.h \
-    $(wildcard include/config/zone/dma.h) \
-    $(wildcard include/config/zone/dma32.h) \
-    $(wildcard include/config/pm/sleep.h) \
-    $(wildcard include/config/contig/alloc.h) \
-    $(wildcard include/config/cma.h) \
-  include/linux/mmzone.h \
-    $(wildcard include/config/force/max/zoneorder.h) \
-    $(wildcard include/config/memory/isolation.h) \
-    $(wildcard include/config/shuffle/page/allocator.h) \
-    $(wildcard include/config/zsmalloc.h) \
-    $(wildcard include/config/compaction.h) \
-    $(wildcard include/config/page/extension.h) \
-    $(wildcard include/config/deferred/struct/page/init.h) \
-    $(wildcard include/config/have/memory/present.h) \
-    $(wildcard include/config/have/memoryless/nodes.h) \
-    $(wildcard include/config/sparsemem/extreme.h) \
-    $(wildcard include/config/memory/hotremove.h) \
-    $(wildcard include/config/holes/in/zone.h) \
-    $(wildcard include/config/arch/has/holes/memorymodel.h) \
   include/linux/wait.h \
   arch/arm/include/generated/asm/current.h \
   include/asm-generic/current.h \
@@ -389,6 +338,7 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/base/small.h) \
   include/linux/numa.h \
     $(wildcard include/config/nodes/shift.h) \
+  include/linux/seqlock.h \
   include/linux/nodemask.h \
   include/linux/bitmap.h \
   include/linux/string.h \
@@ -398,8 +348,11 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   arch/arm/include/asm/string.h \
     $(wildcard include/config/bcm2835/fast/memcpy.h) \
   include/linux/pageblock-flags.h \
+    $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/linux/page-flags-layout.h \
+    $(wildcard include/config/numa/balancing.h) \
+    $(wildcard include/config/kasan/sw/tags.h) \
   include/generated/bounds.h \
   include/linux/mm_types.h \
     $(wildcard include/config/have/aligned/struct/page.h) \
@@ -439,10 +392,15 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/rwsem/spin/on/owner.h) \
     $(wildcard include/config/debug/rwsems.h) \
   include/linux/err.h \
+  arch/arm/include/generated/uapi/asm/errno.h \
+  include/uapi/asm-generic/errno.h \
+  include/uapi/asm-generic/errno-base.h \
   include/linux/osq_lock.h \
   include/linux/completion.h \
   include/linux/uprobes.h \
     $(wildcard include/config/uprobes.h) \
+  include/linux/errno.h \
+  include/uapi/linux/errno.h \
   include/linux/workqueue.h \
     $(wildcard include/config/debug/objects/work.h) \
     $(wildcard include/config/freezer.h) \
@@ -453,12 +411,22 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/preempt/rt.h) \
     $(wildcard include/config/no/hz/common.h) \
   include/linux/ktime.h \
+  include/linux/time.h \
+    $(wildcard include/config/arch/uses/gettimeoffset.h) \
+  include/linux/time32.h \
+  include/linux/timex.h \
+  include/uapi/linux/timex.h \
+  include/uapi/linux/param.h \
+  arch/arm/include/generated/uapi/asm/param.h \
+  include/asm-generic/param.h \
+    $(wildcard include/config/hz.h) \
+  include/uapi/asm-generic/param.h \
+  arch/arm/include/asm/timex.h \
   include/linux/jiffies.h \
   include/generated/timeconst.h \
   include/linux/timekeeping.h \
   include/linux/timekeeping32.h \
   include/linux/debugobjects.h \
-    $(wildcard include/config/debug/objects.h) \
     $(wildcard include/config/debug/objects/free.h) \
   arch/arm/include/asm/mmu.h \
     $(wildcard include/config/cpu/has/asid.h) \
@@ -510,74 +478,12 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   arch/arm/include/asm/topology.h \
     $(wildcard include/config/arm/cpu/topology.h) \
   include/asm-generic/topology.h \
-  include/linux/range.h \
-  include/linux/percpu-refcount.h \
-  include/linux/bit_spinlock.h \
-  include/linux/shrinker.h \
-  include/linux/resource.h \
-  include/uapi/linux/resource.h \
-  arch/arm/include/generated/uapi/asm/resource.h \
-  include/asm-generic/resource.h \
-  include/uapi/asm-generic/resource.h \
-  include/linux/page_ext.h \
-  include/linux/stacktrace.h \
-    $(wildcard include/config/stacktrace.h) \
-    $(wildcard include/config/arch/stackwalk.h) \
-    $(wildcard include/config/have/reliable/stacktrace.h) \
-  include/linux/stackdepot.h \
-  include/linux/page_ref.h \
-    $(wildcard include/config/debug/page/ref.h) \
-  include/linux/tracepoint-defs.h \
-  include/linux/static_key.h \
-  include/linux/jump_label.h \
-    $(wildcard include/config/jump/label.h) \
-    $(wildcard include/config/have/arch/jump/label/relative.h) \
-  arch/arm/include/asm/jump_label.h \
-  include/linux/memremap.h \
-  include/linux/ioport.h \
-    $(wildcard include/config/io/strict/devmem.h) \
   include/linux/overflow.h \
-  arch/arm/include/asm/pgtable.h \
-    $(wildcard include/config/highpte.h) \
-  arch/arm/include/asm/proc-fns.h \
-    $(wildcard include/config/big/little.h) \
-    $(wildcard include/config/harden/branch/predictor.h) \
-  arch/arm/include/asm/glue-proc.h \
-    $(wildcard include/config/cpu/arm7tdmi.h) \
-    $(wildcard include/config/cpu/arm720t.h) \
-    $(wildcard include/config/cpu/arm740t.h) \
-    $(wildcard include/config/cpu/arm9tdmi.h) \
-    $(wildcard include/config/cpu/arm920t.h) \
-    $(wildcard include/config/cpu/arm922t.h) \
-    $(wildcard include/config/cpu/arm925t.h) \
-    $(wildcard include/config/cpu/arm926t.h) \
-    $(wildcard include/config/cpu/arm940t.h) \
-    $(wildcard include/config/cpu/arm946e.h) \
-    $(wildcard include/config/cpu/arm1020.h) \
-    $(wildcard include/config/cpu/arm1020e.h) \
-    $(wildcard include/config/cpu/arm1022.h) \
-    $(wildcard include/config/cpu/arm1026.h) \
-    $(wildcard include/config/cpu/mohawk.h) \
-    $(wildcard include/config/cpu/feroceon.h) \
-    $(wildcard include/config/cpu/v6k.h) \
-    $(wildcard include/config/cpu/pj4b.h) \
-    $(wildcard include/config/cpu/v7.h) \
-  include/asm-generic/pgtable-nopud.h \
-  include/asm-generic/pgtable-nop4d-hack.h \
-  include/asm-generic/5level-fixup.h \
-  arch/arm/include/asm/pgtable-hwdef.h \
-  arch/arm/include/asm/pgtable-2level-hwdef.h \
-  arch/arm/include/asm/tlbflush.h \
-    $(wildcard include/config/smp/on/up.h) \
-    $(wildcard include/config/cpu/tlb/v4wt.h) \
-    $(wildcard include/config/cpu/tlb/fa.h) \
-    $(wildcard include/config/cpu/tlb/v4wbi.h) \
-    $(wildcard include/config/cpu/tlb/feroceon.h) \
-    $(wildcard include/config/cpu/tlb/v4wb.h) \
-    $(wildcard include/config/cpu/tlb/v6.h) \
-    $(wildcard include/config/cpu/tlb/v7.h) \
-    $(wildcard include/config/arm/errata/720789.h) \
-    $(wildcard include/config/arm/errata/798181.h) \
+  include/linux/percpu-refcount.h \
+  include/linux/kasan.h \
+    $(wildcard include/config/kasan/generic.h) \
+  include/linux/uaccess.h \
+    $(wildcard include/config/compat.h) \
   include/linux/sched.h \
     $(wildcard include/config/virt/cpu/accounting/native.h) \
     $(wildcard include/config/sched/info.h) \
@@ -608,7 +514,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/cpusets.h) \
     $(wildcard include/config/x86/cpu/resctrl.h) \
     $(wildcard include/config/futex.h) \
-    $(wildcard include/config/compat.h) \
     $(wildcard include/config/perf/events.h) \
     $(wildcard include/config/rseq.h) \
     $(wildcard include/config/task/delay/acct.h) \
@@ -673,6 +578,11 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   arch/arm/include/generated/uapi/asm/unistd-eabi.h \
   arch/arm/include/generated/uapi/asm/unistd-common.h \
   arch/arm/include/generated/asm/unistd-nr.h \
+  include/linux/resource.h \
+  include/uapi/linux/resource.h \
+  arch/arm/include/generated/uapi/asm/resource.h \
+  include/asm-generic/resource.h \
+  include/uapi/asm-generic/resource.h \
   include/linux/latencytop.h \
   include/linux/sched/prio.h \
   include/linux/sched/types.h \
@@ -691,6 +601,124 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/posix/timers.h) \
   include/linux/alarmtimer.h \
   include/uapi/linux/rseq.h \
+  arch/arm/include/asm/uaccess.h \
+    $(wildcard include/config/cpu/sw/domain/pan.h) \
+    $(wildcard include/config/cpu/use/domains.h) \
+    $(wildcard include/config/uaccess/with/memcpy.h) \
+  arch/arm/include/asm/domain.h \
+    $(wildcard include/config/io/36.h) \
+    $(wildcard include/config/cpu/cp15/mmu.h) \
+  arch/arm/include/generated/asm/extable.h \
+  include/asm-generic/extable.h \
+  include/linux/skbuff.h \
+    $(wildcard include/config/nf/conntrack.h) \
+    $(wildcard include/config/bridge/netfilter.h) \
+    $(wildcard include/config/net/tc/skb/ext.h) \
+    $(wildcard include/config/skb/extensions.h) \
+    $(wildcard include/config/ipv6/ndisc/nodetype.h) \
+    $(wildcard include/config/net/switchdev.h) \
+    $(wildcard include/config/net/cls/act.h) \
+    $(wildcard include/config/net/redirect.h) \
+    $(wildcard include/config/tls/device.h) \
+    $(wildcard include/config/net/sched.h) \
+    $(wildcard include/config/net/rx/busy/poll.h) \
+    $(wildcard include/config/xps.h) \
+    $(wildcard include/config/network/secmark.h) \
+    $(wildcard include/config/net.h) \
+    $(wildcard include/config/network/phy/timestamping.h) \
+    $(wildcard include/config/xfrm.h) \
+    $(wildcard include/config/netfilter/xt/target/trace.h) \
+    $(wildcard include/config/nf/tables.h) \
+    $(wildcard include/config/ip/vs.h) \
+  include/linux/bvec.h \
+  include/linux/mm.h \
+    $(wildcard include/config/sysctl.h) \
+    $(wildcard include/config/have/arch/mmap/rnd/bits.h) \
+    $(wildcard include/config/have/arch/mmap/rnd/compat/bits.h) \
+    $(wildcard include/config/mem/soft/dirty.h) \
+    $(wildcard include/config/arch/uses/high/vma/flags.h) \
+    $(wildcard include/config/arch/has/pkeys.h) \
+    $(wildcard include/config/ppc.h) \
+    $(wildcard include/config/x86.h) \
+    $(wildcard include/config/parisc.h) \
+    $(wildcard include/config/ia64.h) \
+    $(wildcard include/config/sparc64.h) \
+    $(wildcard include/config/x86/intel/mpx.h) \
+    $(wildcard include/config/stack/growsup.h) \
+    $(wildcard include/config/shmem.h) \
+    $(wildcard include/config/arch/has/pte/devmap.h) \
+    $(wildcard include/config/dev/pagemap/ops.h) \
+    $(wildcard include/config/device/private.h) \
+    $(wildcard include/config/pci/p2pdma.h) \
+    $(wildcard include/config/debug/vm/rb.h) \
+    $(wildcard include/config/page/poisoning.h) \
+    $(wildcard include/config/init/on/alloc/default/on.h) \
+    $(wildcard include/config/init/on/free/default/on.h) \
+    $(wildcard include/config/debug/pagealloc.h) \
+    $(wildcard include/config/arch/has/set/direct/map.h) \
+    $(wildcard include/config/hibernation.h) \
+    $(wildcard include/config/hugetlbfs.h) \
+  include/linux/range.h \
+  include/linux/bit_spinlock.h \
+  include/linux/shrinker.h \
+  include/linux/page_ext.h \
+  include/linux/stacktrace.h \
+    $(wildcard include/config/stacktrace.h) \
+    $(wildcard include/config/arch/stackwalk.h) \
+    $(wildcard include/config/have/reliable/stacktrace.h) \
+  include/linux/stackdepot.h \
+  include/linux/page_ref.h \
+    $(wildcard include/config/debug/page/ref.h) \
+  include/linux/tracepoint-defs.h \
+  include/linux/static_key.h \
+  include/linux/jump_label.h \
+    $(wildcard include/config/jump/label.h) \
+    $(wildcard include/config/have/arch/jump/label/relative.h) \
+  arch/arm/include/asm/jump_label.h \
+  include/linux/memremap.h \
+  include/linux/ioport.h \
+    $(wildcard include/config/io/strict/devmem.h) \
+  arch/arm/include/asm/pgtable.h \
+    $(wildcard include/config/highpte.h) \
+  arch/arm/include/asm/proc-fns.h \
+    $(wildcard include/config/big/little.h) \
+    $(wildcard include/config/harden/branch/predictor.h) \
+  arch/arm/include/asm/glue-proc.h \
+    $(wildcard include/config/cpu/arm7tdmi.h) \
+    $(wildcard include/config/cpu/arm720t.h) \
+    $(wildcard include/config/cpu/arm740t.h) \
+    $(wildcard include/config/cpu/arm9tdmi.h) \
+    $(wildcard include/config/cpu/arm920t.h) \
+    $(wildcard include/config/cpu/arm922t.h) \
+    $(wildcard include/config/cpu/arm925t.h) \
+    $(wildcard include/config/cpu/arm926t.h) \
+    $(wildcard include/config/cpu/arm940t.h) \
+    $(wildcard include/config/cpu/arm946e.h) \
+    $(wildcard include/config/cpu/arm1020.h) \
+    $(wildcard include/config/cpu/arm1020e.h) \
+    $(wildcard include/config/cpu/arm1022.h) \
+    $(wildcard include/config/cpu/arm1026.h) \
+    $(wildcard include/config/cpu/mohawk.h) \
+    $(wildcard include/config/cpu/feroceon.h) \
+    $(wildcard include/config/cpu/v6k.h) \
+    $(wildcard include/config/cpu/pj4b.h) \
+    $(wildcard include/config/cpu/v7.h) \
+  include/asm-generic/pgtable-nopud.h \
+  include/asm-generic/pgtable-nop4d-hack.h \
+  include/asm-generic/5level-fixup.h \
+  arch/arm/include/asm/pgtable-hwdef.h \
+  arch/arm/include/asm/pgtable-2level-hwdef.h \
+  arch/arm/include/asm/tlbflush.h \
+    $(wildcard include/config/smp/on/up.h) \
+    $(wildcard include/config/cpu/tlb/v4wt.h) \
+    $(wildcard include/config/cpu/tlb/fa.h) \
+    $(wildcard include/config/cpu/tlb/v4wbi.h) \
+    $(wildcard include/config/cpu/tlb/feroceon.h) \
+    $(wildcard include/config/cpu/tlb/v4wb.h) \
+    $(wildcard include/config/cpu/tlb/v6.h) \
+    $(wildcard include/config/cpu/tlb/v7.h) \
+    $(wildcard include/config/arm/errata/720789.h) \
+    $(wildcard include/config/arm/errata/798181.h) \
   arch/arm/include/asm/pgtable-2level.h \
   include/asm-generic/pgtable.h \
     $(wildcard include/config/pgtable/levels.h) \
@@ -734,7 +762,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   arch/arm/include/uapi/asm/stat.h \
   include/uapi/linux/stat.h \
   include/linux/list_lru.h \
-    $(wildcard include/config/memcg/kmem.h) \
   include/linux/radix-tree.h \
   include/linux/xarray.h \
     $(wildcard include/config/xarray/multi.h) \
@@ -793,27 +820,6 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/arch/has/uaccess/flushcache.h) \
     $(wildcard include/config/arch/has/uaccess/mcsafe.h) \
   include/crypto/hash.h \
-  include/linux/crypto.h \
-    $(wildcard include/config/crypto/stats.h) \
-  include/linux/slab.h \
-    $(wildcard include/config/debug/slab.h) \
-    $(wildcard include/config/failslab.h) \
-    $(wildcard include/config/have/hardened/usercopy/allocator.h) \
-    $(wildcard include/config/slab.h) \
-    $(wildcard include/config/slub.h) \
-    $(wildcard include/config/slob.h) \
-  include/linux/kasan.h \
-    $(wildcard include/config/kasan/generic.h) \
-  include/linux/uaccess.h \
-  arch/arm/include/asm/uaccess.h \
-    $(wildcard include/config/cpu/sw/domain/pan.h) \
-    $(wildcard include/config/cpu/use/domains.h) \
-    $(wildcard include/config/uaccess/with/memcpy.h) \
-  arch/arm/include/asm/domain.h \
-    $(wildcard include/config/io/36.h) \
-    $(wildcard include/config/cpu/cp15/mmu.h) \
-  arch/arm/include/generated/asm/extable.h \
-  include/asm-generic/extable.h \
   include/uapi/linux/uio.h \
   include/uapi/linux/socket.h \
   include/linux/net.h \
@@ -922,6 +928,9 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
   include/net/flow.h \
   include/linux/netfilter/nf_conntrack_common.h \
   include/uapi/linux/netfilter/nf_conntrack_common.h \
+  include/crypto/chacha.h \
+  include/crypto/skcipher.h \
+  include/crypto/internal/skcipher.h \
   include/linux/module.h \
     $(wildcard include/config/modules/tree/lookup.h) \
     $(wildcard include/config/module/sig.h) \
@@ -955,335 +964,7 @@ deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o := \
     $(wildcard include/config/have/mod/arch/specific.h) \
     $(wildcard include/config/modules/use/elf/rel.h) \
     $(wildcard include/config/modules/use/elf/rela.h) \
-  include/crypto/aead.h \
-  include/linux/etherdevice.h \
-  include/linux/if_ether.h \
-  include/linux/netdevice.h \
-    $(wildcard include/config/dcb.h) \
-    $(wildcard include/config/hyperv/net.h) \
-    $(wildcard include/config/wlan.h) \
-    $(wildcard include/config/ax25.h) \
-    $(wildcard include/config/mac80211/mesh.h) \
-    $(wildcard include/config/net/ipip.h) \
-    $(wildcard include/config/net/ipgre.h) \
-    $(wildcard include/config/ipv6/sit.h) \
-    $(wildcard include/config/ipv6/tunnel.h) \
-    $(wildcard include/config/rps.h) \
-    $(wildcard include/config/netpoll.h) \
-    $(wildcard include/config/xdp/sockets.h) \
-    $(wildcard include/config/bql.h) \
-    $(wildcard include/config/rfs/accel.h) \
-    $(wildcard include/config/fcoe.h) \
-    $(wildcard include/config/xfrm/offload.h) \
-    $(wildcard include/config/net/poll/controller.h) \
-    $(wildcard include/config/libfcoe.h) \
-    $(wildcard include/config/wireless/ext.h) \
-    $(wildcard include/config/net/l3/master/dev.h) \
-    $(wildcard include/config/ipv6.h) \
-    $(wildcard include/config/vlan/8021q.h) \
-    $(wildcard include/config/net/dsa.h) \
-    $(wildcard include/config/tipc.h) \
-    $(wildcard include/config/irda.h) \
-    $(wildcard include/config/atalk.h) \
-    $(wildcard include/config/decnet.h) \
-    $(wildcard include/config/mpls/routing.h) \
-    $(wildcard include/config/netfilter/ingress.h) \
-    $(wildcard include/config/garp.h) \
-    $(wildcard include/config/mrp.h) \
-    $(wildcard include/config/cgroup/net/prio.h) \
-    $(wildcard include/config/net/flow/limit.h) \
-  include/linux/delay.h \
-  arch/arm/include/asm/delay.h \
-  include/linux/dynamic_queue_limits.h \
-  include/linux/ethtool.h \
-  include/linux/compat.h \
-    $(wildcard include/config/arch/has/syscall/wrapper.h) \
-    $(wildcard include/config/x86/x32/abi.h) \
-    $(wildcard include/config/compat/old/sigaction.h) \
-    $(wildcard include/config/odd/rt/sigaction.h) \
-  include/uapi/linux/if.h \
-  include/uapi/linux/hdlc/ioctl.h \
-  include/uapi/linux/aio_abi.h \
-  arch/arm/include/generated/asm/compat.h \
-  include/asm-generic/compat.h \
-  include/uapi/linux/ethtool.h \
-  include/net/net_namespace.h \
-    $(wildcard include/config/ieee802154/6lowpan.h) \
-    $(wildcard include/config/ip/sctp.h) \
-    $(wildcard include/config/ip/dccp.h) \
-    $(wildcard include/config/netfilter.h) \
-    $(wildcard include/config/nf/defrag/ipv6.h) \
-    $(wildcard include/config/netfilter/netlink/acct.h) \
-    $(wildcard include/config/nf/ct/netlink/timeout.h) \
-    $(wildcard include/config/wext/core.h) \
-    $(wildcard include/config/mpls.h) \
-    $(wildcard include/config/can.h) \
-    $(wildcard include/config/crypto/user.h) \
-    $(wildcard include/config/net/ns.h) \
-  include/net/netns/core.h \
-  include/net/netns/mib.h \
-    $(wildcard include/config/xfrm/statistics.h) \
-  include/net/snmp.h \
-  include/uapi/linux/snmp.h \
-  include/linux/u64_stats_sync.h \
-  include/net/netns/unix.h \
-  include/net/netns/packet.h \
-  include/net/netns/ipv4.h \
-    $(wildcard include/config/ip/multiple/tables.h) \
-    $(wildcard include/config/ip/route/classid.h) \
-    $(wildcard include/config/ip/mroute.h) \
-    $(wildcard include/config/ip/mroute/multiple/tables.h) \
-    $(wildcard include/config/ip/route/multipath.h) \
-  include/net/inet_frag.h \
-  include/net/netns/ipv6.h \
-    $(wildcard include/config/ipv6/multiple/tables.h) \
-    $(wildcard include/config/ipv6/mroute.h) \
-    $(wildcard include/config/ipv6/mroute/multiple/tables.h) \
-  include/net/dst_ops.h \
-  include/uapi/linux/icmpv6.h \
-  include/net/netns/nexthop.h \
-  include/net/netns/ieee802154_6lowpan.h \
-  include/net/netns/sctp.h \
-  include/net/netns/dccp.h \
-  include/net/netns/netfilter.h \
-    $(wildcard include/config/netfilter/family/arp.h) \
-    $(wildcard include/config/netfilter/family/bridge.h) \
-    $(wildcard include/config/nf/defrag/ipv4.h) \
-  include/linux/netfilter_defs.h \
-  include/uapi/linux/netfilter.h \
-  include/linux/in.h \
-  include/uapi/linux/in.h \
-  include/net/netns/x_tables.h \
-    $(wildcard include/config/bridge/nf/ebtables.h) \
-  include/net/netns/conntrack.h \
-    $(wildcard include/config/nf/ct/proto/dccp.h) \
-    $(wildcard include/config/nf/ct/proto/sctp.h) \
-    $(wildcard include/config/nf/ct/proto/gre.h) \
-    $(wildcard include/config/nf/conntrack/events.h) \
-    $(wildcard include/config/nf/conntrack/labels.h) \
-  include/linux/list_nulls.h \
-  include/linux/netfilter/nf_conntrack_tcp.h \
-  include/uapi/linux/netfilter/nf_conntrack_tcp.h \
-  include/linux/netfilter/nf_conntrack_dccp.h \
-  include/uapi/linux/netfilter/nf_conntrack_tuple_common.h \
-  include/linux/netfilter/nf_conntrack_sctp.h \
-  include/uapi/linux/netfilter/nf_conntrack_sctp.h \
-  include/net/netns/nftables.h \
-  include/net/netns/xfrm.h \
-  include/uapi/linux/xfrm.h \
-  include/net/netns/mpls.h \
-  include/net/netns/can.h \
-  include/net/netns/xdp.h \
-  include/linux/ns_common.h \
-  include/linux/seq_file_net.h \
-  include/linux/seq_file.h \
-  include/linux/cred.h \
-    $(wildcard include/config/debug/credentials.h) \
-  include/linux/key.h \
-  include/linux/assoc_array.h \
-    $(wildcard include/config/associative/array.h) \
-  include/linux/sched/user.h \
-    $(wildcard include/config/fanotify.h) \
-    $(wildcard include/config/posix/mqueue.h) \
-    $(wildcard include/config/bpf/syscall.h) \
-  include/net/netprio_cgroup.h \
-  include/linux/cgroup.h \
-    $(wildcard include/config/cgroup/cpuacct.h) \
-    $(wildcard include/config/sock/cgroup/data.h) \
-    $(wildcard include/config/cgroup/net/classid.h) \
-    $(wildcard include/config/cgroup/data.h) \
-    $(wildcard include/config/cgroup/bpf.h) \
-  include/uapi/linux/cgroupstats.h \
-  include/uapi/linux/taskstats.h \
-  include/linux/nsproxy.h \
-  include/linux/user_namespace.h \
-    $(wildcard include/config/inotify/user.h) \
-    $(wildcard include/config/persistent/keyrings.h) \
-  include/linux/kernel_stat.h \
-  include/linux/interrupt.h \
-    $(wildcard include/config/irq/forced/threading.h) \
-    $(wildcard include/config/generic/irq/probe.h) \
-    $(wildcard include/config/irq/timings.h) \
-  include/linux/irqreturn.h \
-  include/linux/hardirq.h \
-  include/linux/ftrace_irq.h \
-    $(wildcard include/config/ftrace/nmi/enter.h) \
-    $(wildcard include/config/hwlat/tracer.h) \
-  include/linux/vtime.h \
-    $(wildcard include/config/virt/cpu/accounting.h) \
-  include/linux/context_tracking_state.h \
-    $(wildcard include/config/context/tracking.h) \
-  arch/arm/include/asm/hardirq.h \
-  arch/arm/include/asm/irq.h \
-    $(wildcard include/config/sparse/irq.h) \
-  include/linux/irq_cpustat.h \
-  arch/arm/include/asm/sections.h \
-  include/asm-generic/sections.h \
-  include/linux/cgroup-defs.h \
-  include/linux/bpf-cgroup.h \
-  include/linux/bpf.h \
-    $(wildcard include/config/bpf/stream/parser.h) \
-    $(wildcard include/config/inet.h) \
-  include/uapi/linux/bpf.h \
-    $(wildcard include/config/efficient/unaligned/access.h) \
-    $(wildcard include/config/bpf/kprobe/override.h) \
-    $(wildcard include/config/bpf/lirc/mode2.h) \
-  include/uapi/linux/bpf_common.h \
-  include/linux/file.h \
-  include/linux/bpf_types.h \
-  include/linux/psi_types.h \
-  include/linux/kthread.h \
-  include/linux/cgroup_subsys.h \
-    $(wildcard include/config/cgroup/device.h) \
-    $(wildcard include/config/cgroup/freezer.h) \
-    $(wildcard include/config/cgroup/perf.h) \
-    $(wildcard include/config/cgroup/hugetlb.h) \
-    $(wildcard include/config/cgroup/pids.h) \
-    $(wildcard include/config/cgroup/rdma.h) \
-    $(wildcard include/config/cgroup/debug.h) \
-  include/net/xdp.h \
-  include/uapi/linux/neighbour.h \
-  include/linux/netlink.h \
-  include/net/scm.h \
-    $(wildcard include/config/security/network.h) \
-  include/linux/security.h \
-    $(wildcard include/config/security/infiniband.h) \
-    $(wildcard include/config/security/network/xfrm.h) \
-    $(wildcard include/config/security/path.h) \
-    $(wildcard include/config/securityfs.h) \
-  include/linux/sched/signal.h \
-    $(wildcard include/config/sched/autogroup.h) \
-    $(wildcard include/config/bsd/process/acct.h) \
-    $(wildcard include/config/taskstats.h) \
-  include/linux/signal.h \
-  include/linux/sched/jobctl.h \
-  include/linux/sched/task.h \
-    $(wildcard include/config/have/copy/thread/tls.h) \
-    $(wildcard include/config/have/exit/thread.h) \
-    $(wildcard include/config/arch/wants/dynamic/task/struct.h) \
-    $(wildcard include/config/have/arch/thread/struct/whitelist.h) \
-  include/uapi/linux/netlink.h \
-  include/uapi/linux/netdevice.h \
-  include/linux/if_link.h \
-  include/uapi/linux/if_link.h \
-  include/uapi/linux/if_bonding.h \
-  include/uapi/linux/pkt_cls.h \
-  include/uapi/linux/pkt_sched.h \
-  include/linux/hashtable.h \
-  arch/arm/include/asm/unaligned.h \
-  include/linux/unaligned/le_struct.h \
-  include/linux/unaligned/packed_struct.h \
-  include/linux/unaligned/be_byteshift.h \
-  include/linux/unaligned/generic.h \
-  include/linux/rtnetlink.h \
-    $(wildcard include/config/net/ingress.h) \
-    $(wildcard include/config/net/egress.h) \
-  include/uapi/linux/rtnetlink.h \
-  include/uapi/linux/if_addr.h \
-  include/net/genetlink.h \
-  include/linux/genetlink.h \
-  include/uapi/linux/genetlink.h \
-  include/net/netlink.h \
-  include/net/sock.h \
-    $(wildcard include/config/sock/validate/xmit.h) \
-  include/linux/page_counter.h \
-  include/linux/memcontrol.h \
-    $(wildcard include/config/memcg/swap.h) \
-  include/linux/vmpressure.h \
-  include/linux/eventfd.h \
-    $(wildcard include/config/eventfd.h) \
-  include/linux/writeback.h \
-  include/linux/flex_proportions.h \
-  include/linux/backing-dev-defs.h \
-    $(wildcard include/config/debug/fs.h) \
-  include/linux/blk_types.h \
-    $(wildcard include/config/blk/cgroup/iocost.h) \
-    $(wildcard include/config/blk/dev/integrity.h) \
-  include/linux/blk-cgroup.h \
-    $(wildcard include/config/blk/dev/throttling.h) \
-  include/linux/blkdev.h \
-    $(wildcard include/config/blk/rq/alloc/time.h) \
-    $(wildcard include/config/blk/wbt.h) \
-    $(wildcard include/config/blk/dev/zoned.h) \
-    $(wildcard include/config/blk/dev/bsg.h) \
-    $(wildcard include/config/blk/debug/fs.h) \
-  include/uapi/linux/major.h \
-  include/linux/genhd.h \
-    $(wildcard include/config/fail/make/request.h) \
-    $(wildcard include/config/solaris/x86/partition.h) \
-    $(wildcard include/config/bsd/disklabel.h) \
-    $(wildcard include/config/unixware/disklabel.h) \
-    $(wildcard include/config/minix/subpartition.h) \
-  arch/arm/include/generated/asm/local.h \
-  include/asm-generic/local.h \
-  include/linux/pagemap.h \
-  include/linux/highmem.h \
-    $(wildcard include/config/x86/32.h) \
-    $(wildcard include/config/debug/highmem.h) \
-  arch/arm/include/asm/cacheflush.h \
-    $(wildcard include/config/arm/errata/411920.h) \
-    $(wildcard include/config/cpu/cache/vipt.h) \
-    $(wildcard include/config/outer/cache.h) \
-    $(wildcard include/config/frame/pointer.h) \
-    $(wildcard include/config/cpu/icache/mismatch/workaround.h) \
-  arch/arm/include/asm/glue-cache.h \
-    $(wildcard include/config/cpu/cache/v4.h) \
-    $(wildcard include/config/cpu/cache/v4wb.h) \
-    $(wildcard include/config/cache/b15/rac.h) \
-  arch/arm/include/asm/cachetype.h \
-    $(wildcard include/config/cpu/cache/vivt.h) \
-  arch/arm/include/asm/outercache.h \
-    $(wildcard include/config/outer/cache/sync.h) \
-  arch/arm/include/asm/kmap_types.h \
-  include/linux/hugetlb_inline.h \
-  include/linux/mempool.h \
-  include/linux/bio.h \
-  include/linux/bsg.h \
-  include/uapi/linux/bsg.h \
-  include/uapi/linux/blkzoned.h \
-  include/linux/elevator.h \
-  include/linux/filter.h \
-    $(wildcard include/config/bpf/jit/always/on.h) \
-    $(wildcard include/config/bpf/jit.h) \
-    $(wildcard include/config/have/ebpf/jit.h) \
-  include/linux/cryptohash.h \
-  include/linux/set_memory.h \
-    $(wildcard include/config/arch/has/set/memory.h) \
-  arch/arm/include/asm/set_memory.h \
-  include/linux/kallsyms.h \
-    $(wildcard include/config/kallsyms/all.h) \
-  include/linux/if_vlan.h \
-  include/uapi/linux/if_vlan.h \
-  include/net/sch_generic.h \
-  include/uapi/linux/pkt_cls.h \
-  include/net/gen_stats.h \
-  include/uapi/linux/gen_stats.h \
-  include/net/rtnetlink.h \
-  include/net/flow_offload.h \
-  include/linux/rhashtable.h \
-  include/linux/jhash.h \
-  include/uapi/linux/filter.h \
-  include/linux/rculist_nulls.h \
-  include/linux/poll.h \
-  include/uapi/linux/poll.h \
-  arch/arm/include/generated/uapi/asm/poll.h \
-  include/uapi/asm-generic/poll.h \
-  include/uapi/linux/eventpoll.h \
-  include/net/dst.h \
-  include/net/neighbour.h \
-  include/net/tcp_states.h \
-  include/uapi/linux/net_tstamp.h \
-  include/net/smc.h \
-  include/net/l3mdev.h \
-  include/net/fib_rules.h \
-  include/uapi/linux/fib_rules.h \
-  include/net/fib_notifier.h \
-  include/net/gro_cells.h \
-  include/linux/if_arp.h \
-    $(wildcard include/config/firewire/net.h) \
-  include/uapi/linux/if_arp.h \
-  include/uapi/linux/if_macsec.h \
 
-/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o: $(deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o)
+/home/pi/MACsecInstallation/Installation/chacha/chacha_generic.o: $(deps_/home/pi/MACsecInstallation/Installation/chacha/chacha_generic.o)
 
-$(deps_/home/pi/MACsecInstallation/Installation/MACsec/MACsec5.4/macsec.o):
+$(deps_/home/pi/MACsecInstallation/Installation/chacha/chacha_generic.o):

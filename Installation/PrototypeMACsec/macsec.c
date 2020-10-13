@@ -515,6 +515,8 @@ static void macsec_set_shortlen(struct macsec_eth_header *h, size_t data_len, bo
     if(cipherbit){
     h->cipherbit |= MACSEC_SECTAG_CB_MASK;
 	}
+	printk("h->cipherbit %d\n", h->cipherbit);
+	printk("cipherbit in shortlen %d\n", cipherbit);
 }
 
 /* validate MACsec packet according to IEEE 802.1AE-2006 9.12 */
@@ -762,7 +764,7 @@ static struct sk_buff *macsec_encrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-
+	printk("tx_sc->cipherbit in encrypt %d\n", tx_sc->cipherbit);
 	req = macsec_alloc_req(tx_sa->key[tx_sc->cipherbit].tfm, &iv, &sg, ret);
 	if (!req) {
 		macsec_txsa_put(tx_sa);
@@ -978,6 +980,7 @@ static struct sk_buff *macsec_decrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
+	printk("cipherbit in decrypt %d\n",cipherbit);
 	req = macsec_alloc_req(rx_sa->key[cipherbit].tfm, &iv, &sg, ret);
 	if (!req) {
 		kfree_skb(skb);
@@ -994,7 +997,7 @@ static struct sk_buff *macsec_decrypt(struct sk_buff *skb,
 		kfree_skb(skb);
 		return ERR_PTR(ret);
 	}
-
+	printk("hdr->cipherbit in decrypt %d\n",hdr->cipherbit);
 	if (hdr->tci_an & MACSEC_TCI_E) {
 		/* confidentiality: ethernet + macsec header
 		 * authenticated, encrypted payload
@@ -1125,11 +1128,13 @@ static rx_handler_result_t macsec_handle_frame(struct sk_buff **pskb)
     bool pulled_sci;
     int ret;
     bool more_fragments = false;
+    bool cipherbit = false;
 
 	if (skb_headroom(skb) < ETH_HLEN)
 		goto drop_direct;
 
 	hdr = macsec_ethhdr(skb);
+	//printk("macsec_ethhdr %x\n",macsec_ethhdr(skb));
 	if (hdr->eth.h_proto != htons(ETH_P_MACSEC)) {
 		handle_not_macsec(skb);
 
@@ -1243,12 +1248,16 @@ static rx_handler_result_t macsec_handle_frame(struct sk_buff **pskb)
 			goto drop;
 		}
 	}
-
+	printk("hdr->cipherbit in handle_frame %d\n",hdr->cipherbit);
+	if(hdr->cipherbit)
+		cipherbit = true;
+	
+	printk("cipherbit in handle_frame %d \n",cipherbit);
 	macsec_skb_cb(skb)->rx_sa = rx_sa;
 	/* Disabled && !changed text => skip validation */
 	if (hdr->tci_an & MACSEC_TCI_C ||
 	    secy->validate_frames != MACSEC_VALIDATE_DISABLED){
-		skb = macsec_decrypt(skb, dev, rx_sa, sci, secy,hdr->cipherbit);
+		skb = macsec_decrypt(skb, dev, rx_sa, sci, secy,cipherbit);
 }
 	if (IS_ERR(skb)) {
 		/* the decrypt callback needs the reference */
@@ -1502,7 +1511,7 @@ static struct crypto_aead *macsec_alloc_tfm(char *key, int key_len, int icv_len,
 		switch (csid) {
 					case MACSEC_DEFAULT_CIPHER_ID :
 						printk("ich war hier gcm1\n");
-						tfm = crypto_alloc_aead("gcm(aes)", 0, CRYPTO_ALG_ASYNC);
+						tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
 						break;
 					case MACSEC_CIPHER_ID_AEGIS128L_128:
 						tfm = crypto_alloc_aead("aegis128l", 0, 0);
@@ -1514,7 +1523,7 @@ static struct crypto_aead *macsec_alloc_tfm(char *key, int key_len, int icv_len,
 						break;
 					default:
 						printk("ich war hier gcm2\n");
-						tfm = crypto_alloc_aead("gcm(aes)", 0, CRYPTO_ALG_ASYNC);
+						tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
 						break;
 		}
 

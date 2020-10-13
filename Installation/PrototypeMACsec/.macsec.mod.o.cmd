@@ -42,7 +42,7 @@ deps_/home/pi/MACsecInstallation/Installation/PrototypeMACsec/macsec.mod.o := \
     $(wildcard include/config/arm/lpae.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
   arch/arm/include/asm/glue.h \
-  arch/arm/include/asm/pgtable-3level-types.h \
+  arch/arm/include/asm/pgtable-2level-types.h \
   arch/arm/include/uapi/asm/types.h \
   include/asm-generic/int-ll64.h \
   include/uapi/asm-generic/int-ll64.h \
