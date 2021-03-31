@@ -1,0 +1,9 @@
+	sudo modprobe -r macsec
+	#sudo rmmod macsec.ko
+	sudo make -C /lib/modules/$(uname -r)/build M=$(pwd) modules
+	#make -C /lib/modules/$(uname -r)/build M=$(pwd) modules_install	
+	#sudo depmod -A	
+	sudo cp macsec.ko /lib/modules/$(uname -r)/kernel/drivers/net/
+	sudo depmod
+	sudo cp ../if_link.h /lib/modules/$(uname -r)/build/include/uapi/linux
+	sudo modprobe -v macsec
