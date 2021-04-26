@@ -1502,7 +1502,7 @@ static struct crypto_aead *macsec_alloc_tfm(char *key, int key_len, int icv_len,
 		switch (csid) {
 					case MACSEC_DEFAULT_CIPHER_ID :
 						printk("ich war hier gcm1\n");
-						tfm = crypto_alloc_aead("gcm(aes)", 0, CRYPTO_ALG_ASYNC);
+						tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
 						break;
 					case MACSEC_CIPHER_ID_AEGIS128L_128:
 						tfm = crypto_alloc_aead("aegis128l", 0, 0);
@@ -1514,7 +1514,7 @@ static struct crypto_aead *macsec_alloc_tfm(char *key, int key_len, int icv_len,
 						break;
 					default:
 						printk("ich war hier gcm2\n");
-						tfm = crypto_alloc_aead("gcm(aes)", 0, CRYPTO_ALG_ASYNC);
+						tfm = crypto_alloc_aead("gcm(aes)", 0, 0);
 						break;
 		}
 
@@ -3022,7 +3022,7 @@ static netdev_tx_t macsec_start_xmit(struct sk_buff *skb,
         }
         // Increase the headroom of an empty &sk_buff by reducing the tail room
         // macsec_extra_len = sectagLen(10 (+ 8) Bytes) + ethernet hhdr (2 Bytes)
-        skb_reserve(skb_frag, ETH_HLEN + macsec_extra_len(sci_present) - 2);
+        skb_reserve(skb_frag, ETH_HLEN + macsec_extra_len(sci_present) + 2);
         skb_split(skb, skb_frag, new_skb_len);
         skb_reset_network_header(skb_frag);
 
